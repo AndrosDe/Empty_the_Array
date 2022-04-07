@@ -37,8 +37,8 @@ reaching a point at which, given the results produced by the dice,
 the player cannot shut any more numbers.
 At that point, the player scores the sum of remaining numbers in the list.
 For example, if the numbers 2, 3, and 5 are still open
- when the player throws a one, the player's score is 10 (2 + 3 + 5 = 10).
- Player then passes to the next player.
+when the player throws a one, the player's score is 10 (2 + 3 + 5 = 10).
+Player then passes to the next player.
 
 After every player has taken a turn, the player with the lowest score wins.'''
     print(rule)
