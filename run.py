@@ -55,7 +55,7 @@ def dice_roll():
     return dice
 
 
-def computer_turn():
+def computer_tiles():
     """
     A turn has two parts to it:
     1. rolling the dice and generating the sum of the dice
@@ -68,7 +68,7 @@ def computer_turn():
     dice_two = dice_roll()
     print(f"Python rolled {dice_one} and a {dice_two}")
 
-    dice_sum = dice_sum = dice_one + dice_two
+    dice_sum = dice_one + dice_two
     print(f"The sum of the dices are {dice_sum}.\n")
 
     # to "close" the tiles we use the remove() method
@@ -80,11 +80,11 @@ def computer_turn():
         print(value_dice)
         # try to remove 2, if not possible remove 1
         try:
-            computer_tiles.remove(1)
+            computer_array.remove(1)
             print(" a 1.")
         except ValueError:
             try:
-                computer_tiles.remove(2)
+                computer_array.remove(2)
                 print(" a 2.")
             except ValueError:
                 print(value_error)
@@ -92,12 +92,12 @@ def computer_turn():
         print(value_dice)
         # try to remove 3 or 2, 1
         try:
-            computer_tiles.remove(2)
-            computer_tiles.remove(1)
+            computer_array.remove(2)
+            computer_array.remove(1)
             print(" a 2 and a 1.")
         except ValueError:
             try:
-                computer_tiles.remove(3)
+                computer_array.remove(3)
                 print(" a 3")
             except ValueError:
                 print(value_error)
@@ -105,12 +105,12 @@ def computer_turn():
         print(value_dice)
         # try to remove 4 or 2 or 3,1
         try:
-            computer_tiles.remove(4)
+            computer_array.remove(4)
             print(" a 4.")
         except ValueError:
             try:
-                computer_tiles.remove(1)
-                computer_tiles.remove(3)
+                computer_array.remove(1)
+                computer_array.remove(3)
                 print(" 3 and 1.")
             except ValueError:
                 print(value_error)
@@ -118,17 +118,17 @@ def computer_turn():
         print(value_dice)
         # try to remove 5 or 3, 2 or 4,1
         try:
-            computer_tiles.remove(5)
+            computer_array.remove(5)
             print(" a 5.")
         except ValueError:
             try:
-                computer_tiles.remove(1)
-                computer_tiles.remove(4)
+                computer_array.remove(1)
+                computer_array.remove(4)
                 print(" 4 and 1.")
             except ValueError:
                 try:
-                    computer_tiles.remove(2)
-                    computer_tiles.remove(3)
+                    computer_array.remove(2)
+                    computer_array.remove(3)
                     print(" 3 and 2.")
                 except ValueError:
                     print(value_error)
@@ -136,16 +136,16 @@ def computer_turn():
         print(value_dice)
         # try to remove 6 or 3 or 4, 2
         try:
-            computer_tiles.remove(6)
+            computer_array.remove(6)
             print(" a 6.")
         except ValueError:
             try:
-                computer_tiles.remove(3)
+                computer_array.remove(3)
                 print(" a 3.")
             except ValueError:
                 try:
-                    computer_tiles.remove(2)
-                    computer_tiles.remove(4)
+                    computer_array.remove(2)
+                    computer_array.remove(4)
                     print(" 4 and 2.")
                 except ValueError:
                     print(value_error)
@@ -153,28 +153,28 @@ def computer_turn():
         print(value_dice)
         # try to remove 7 or 6,1 or 5,2 or 4,3 or 3,2,1
         try:
-            computer_tiles.remove(7)
+            computer_array.remove(7)
             print(" a 7.")
         except ValueError:
             try:
-                computer_tiles.remove(6)
-                computer_tiles.remove(1)
+                computer_array.remove(6)
+                computer_array.remove(1)
                 print(" 6 and 1.")
             except ValueError:
                 try:
-                    computer_tiles.remove(5)
-                    computer_tiles.remove(2)
+                    computer_array.remove(5)
+                    computer_array.remove(2)
                     print(" 5 and 2.")
                 except ValueError:
                     try:
-                        computer_tiles.remove(4)
-                        computer_tiles.remove(3)
+                        computer_array.remove(4)
+                        computer_array.remove(3)
                         print(" 4 and 3.")
                     except ValueError:
                         try:
-                            computer_tiles.remove(4)
-                            computer_tiles.remove(2)
-                            computer_tiles.remove(1)
+                            computer_array.remove(4)
+                            computer_array.remove(2)
+                            computer_array.remove(1)
                             print(" 4, 2 and 1.")
                         except ValueError:
                             print(value_error)
@@ -182,34 +182,34 @@ def computer_turn():
         print(value_dice)
         # try to remove 8 or 7,1 or 6,2 or 5,3 or 5,2,1 or 4,3,1
         try:
-            computer_tiles.remove(8)
+            computer_array.remove(8)
             print(" a 8.")
         except ValueError:
             try:
-                computer_tiles.remove(7)
-                computer_tiles.remove(1)
+                computer_array.remove(7)
+                computer_array.remove(1)
                 print(" 7 and 1.")
             except ValueError:
                 try:
-                    computer_tiles.remove(6)
-                    computer_tiles.remove(2)
+                    computer_array.remove(6)
+                    computer_array.remove(2)
                     print(" 6 and 2.")
                 except ValueError:
                     try:
-                        computer_tiles.remove(5)
-                        computer_tiles.remove(3)
+                        computer_array.remove(5)
+                        computer_array.remove(3)
                         print(" 5 and 3.")
                     except ValueError:
                         try:
-                            computer_tiles.remove(5)
-                            computer_tiles.remove(2)
-                            computer_tiles.remove(1)
+                            computer_array.remove(5)
+                            computer_array.remove(2)
+                            computer_array.remove(1)
                             print(" 5, 2 and 1.")
                         except ValueError:
                             try:
-                                computer_tiles.remove(4)
-                                computer_tiles.remove(3)
-                                computer_tiles.remove(1)
+                                computer_array.remove(4)
+                                computer_array.remove(3)
+                                computer_array.remove(1)
                                 print(" 4, 3 and 1.")
                             except ValueError:
                                 print(value_error)
@@ -217,39 +217,39 @@ def computer_turn():
         print(value_dice)
         # try to remove 9 or 8,1 or 7,2 or 6,3 or 5,4 or 5,3,1 or 4,3,2
         try:
-            computer_tiles.remove(9)
+            computer_array.remove(9)
             print(" a 9.")
         except ValueError:
             try:
-                computer_tiles.remove(8)
-                computer_tiles.remove(1)
+                computer_array.remove(8)
+                computer_array.remove(1)
                 print(" 8 and 1.")
             except ValueError:
                 try:
-                    computer_tiles.remove(7)
-                    computer_tiles.remove(2)
+                    computer_array.remove(7)
+                    computer_array.remove(2)
                     print(" 7 and 2.")
                 except ValueError:
                     try:
-                        computer_tiles.remove(6)
-                        computer_tiles.remove(3)
+                        computer_array.remove(6)
+                        computer_array.remove(3)
                         print(" 6 and 3.")
                     except ValueError:
                         try:
-                            computer_tiles.remove(5)
-                            computer_tiles.remove(4)
+                            computer_array.remove(5)
+                            computer_array.remove(4)
                             print(" 5 and 4.")
                         except ValueError:
                             try:
-                                computer_tiles.remove(5)
-                                computer_tiles.remove(3)
-                                computer_tiles.remove(1)
+                                computer_array.remove(5)
+                                computer_array.remove(3)
+                                computer_array.remove(1)
                                 print(" 5, 3 and 1.")
                             except ValueError:
                                 try:
-                                    computer_tiles.remove(4)
-                                    computer_tiles.remove(3)
-                                    computer_tiles.remove(2)
+                                    computer_array.remove(4)
+                                    computer_array.remove(3)
+                                    computer_array.remove(2)
                                     print(" 4, 3 and 2.")
                                 except ValueError:
                                     print(value_error)
@@ -257,41 +257,41 @@ def computer_turn():
         print(value_dice)
         # try to remove 9,1 or 8,2 or 7,3 or 6,4 or 6,3,1 or 5,4,1, or 5,3,2
         try:
-            computer_tiles.remove(9)
-            computer_tiles.remove(1)
+            computer_array.remove(9)
+            computer_array.remove(1)
             print(" 9 and 1.")
         except ValueError:
             try:
-                computer_tiles.remove(8)
-                computer_tiles.remove(2)
+                computer_array.remove(8)
+                computer_array.remove(2)
                 print(" 8 and 2.")
             except ValueError:
                 try:
-                    computer_tiles.remove(7)
-                    computer_tiles.remove(3)
+                    computer_array.remove(7)
+                    computer_array.remove(3)
                     print(" 7 and 3.")
                 except ValueError:
                     try:
-                        computer_tiles.remove(6)
-                        computer_tiles.remove(4)
+                        computer_array.remove(6)
+                        computer_array.remove(4)
                         print(" 6 and 4.")
                     except ValueError:
                         try:
-                            computer_tiles.remove(6)
-                            computer_tiles.remove(3)
-                            computer_tiles.remove(1)
+                            computer_array.remove(6)
+                            computer_array.remove(3)
+                            computer_array.remove(1)
                             print(" 6, 3 and 1.")
                         except ValueError:
                             try:
-                                computer_tiles.remove(5)
-                                computer_tiles.remove(4)
-                                computer_tiles.remove(1)
+                                computer_array.remove(5)
+                                computer_array.remove(4)
+                                computer_array.remove(1)
                                 print(" 5, 4 and 1.")
                             except ValueError:
                                 try:
-                                    computer_tiles.remove(5)
-                                    computer_tiles.remove(3)
-                                    computer_tiles.remove(2)
+                                    computer_array.remove(5)
+                                    computer_array.remove(3)
+                                    computer_array.remove(2)
                                     print(" 5, 3 and 2.")
                                 except ValueError:
                                     print(value_error)
@@ -300,47 +300,47 @@ def computer_turn():
         # try to remove 9,2 or 8,3 or 7,4 or 6,5
         # or 7,3,1 or 6,4,1 or 6,3,2 or 5,4,2
         try:
-            computer_tiles.remove(9)
-            computer_tiles.remove(2)
+            computer_array.remove(9)
+            computer_array.remove(2)
             print(" 9 and 2.")
         except ValueError:
             try:
-                computer_tiles.remove(8)
-                computer_tiles.remove(3)
+                computer_array.remove(8)
+                computer_array.remove(3)
                 print(" 8 and 3.")
             except ValueError:
                 try:
-                    computer_tiles.remove(7)
-                    computer_tiles.remove(4)
+                    computer_array.remove(7)
+                    computer_array.remove(4)
                     print(" 7 and 4.")
                 except ValueError:
                     try:
-                        computer_tiles.remove(6)
-                        computer_tiles.remove(5)
+                        computer_array.remove(6)
+                        computer_array.remove(5)
                         print(" 6 and 5.")
                     except ValueError:
                         try:
-                            computer_tiles.remove(7)
-                            computer_tiles.remove(3)
-                            computer_tiles.remove(1)
+                            computer_array.remove(7)
+                            computer_array.remove(3)
+                            computer_array.remove(1)
                             print(" 7, 3 and 1.")
                         except ValueError:
                             try:
-                                computer_tiles.remove(6)
-                                computer_tiles.remove(4)
-                                computer_tiles.remove(1)
+                                computer_array.remove(6)
+                                computer_array.remove(4)
+                                computer_array.remove(1)
                                 print(" 6, 4 and 1.")
                             except ValueError:
                                 try:
-                                    computer_tiles.remove(6)
-                                    computer_tiles.remove(3)
-                                    computer_tiles.remove(2)
+                                    computer_array.remove(6)
+                                    computer_array.remove(3)
+                                    computer_array.remove(2)
                                     print(" 6, 3 and 2.")
                                 except ValueError:
                                     try:
-                                        computer_tiles.remove(5)
-                                        computer_tiles.remove(4)
-                                        computer_tiles.remove(2)
+                                        computer_array.remove(5)
+                                        computer_array.remove(4)
+                                        computer_array.remove(2)
                                         print(" 5, 4 and 2.")
                                     except ValueError:
                                         print(value_error)
@@ -349,68 +349,68 @@ def computer_turn():
         # try to remove 9,3 or 9,2,1 or 8,4 or 8,3,1 or 7,5
         # or 7,4,1 or 7,3,2 or 6,4,2 or 6,5,1 or 5,4,3
         try:
-            computer_tiles.remove(9)
-            computer_tiles.remove(3)
+            computer_array.remove(9)
+            computer_array.remove(3)
             print(" 9 and 3.")
         except ValueError:
             try:
-                computer_tiles.remove(9)
-                computer_tiles.remove(2)
-                computer_tiles.remove(1)
+                computer_array.remove(9)
+                computer_array.remove(2)
+                computer_array.remove(1)
                 print(" 9, 2 and 1.")
             except ValueError:
                 try:
-                    computer_tiles.remove(8)
-                    computer_tiles.remove(4)
+                    computer_array.remove(8)
+                    computer_array.remove(4)
                     print(" 8 and 4.")
                 except ValueError:
                     try:
-                        computer_tiles.remove(8)
-                        computer_tiles.remove(3)
-                        computer_tiles.remove(1)
+                        computer_array.remove(8)
+                        computer_array.remove(3)
+                        computer_array.remove(1)
                         print(" 8, 3 and 1.")
                     except ValueError:
                         try:
-                            computer_tiles.remove(7)
-                            computer_tiles.remove(5)
+                            computer_array.remove(7)
+                            computer_array.remove(5)
                             print(" 7and 5.")
                         except ValueError:
                             try:
-                                computer_tiles.remove(7)
-                                computer_tiles.remove(4)
-                                computer_tiles.remove(1)
+                                computer_array.remove(7)
+                                computer_array.remove(4)
+                                computer_array.remove(1)
                                 print(" 7, 4 and 1.")
                             except ValueError:
                                 try:
-                                    computer_tiles.remove(7)
-                                    computer_tiles.remove(3)
-                                    computer_tiles.remove(2)
+                                    computer_array.remove(7)
+                                    computer_array.remove(3)
+                                    computer_array.remove(2)
                                     print(" 7, 3 and 2.")
                                 except ValueError:
                                     try:
-                                        computer_tiles.remove(6)
-                                        computer_tiles.remove(4)
-                                        computer_tiles.remove(2)
+                                        computer_array.remove(6)
+                                        computer_array.remove(4)
+                                        computer_array.remove(2)
                                         print(" 6, 4 and 2.")
                                     except ValueError:
                                         try:
-                                            computer_tiles.remove(6)
-                                            computer_tiles.remove(5)
-                                            computer_tiles.remove(1)
+                                            computer_array.remove(6)
+                                            computer_array.remove(5)
+                                            computer_array.remove(1)
                                             print(" 6, 5 and 1.")
                                         except ValueError:
                                             try:
-                                                computer_tiles.remove(5)
-                                                computer_tiles.remove(4)
-                                                computer_tiles.remove(3)
+                                                computer_array.remove(5)
+                                                computer_array.remove(4)
+                                                computer_array.remove(3)
                                                 print(" 5, 4 and 3.")
                                             except ValueError:
                                                 print(value_error)
 
-    print(f"Pythons left-over tiles are: {computer_tiles}\n")
+    print(f"Pythons left-over tiles are: {computer_array}\n")
 
 
-def player_turn():
+def player_tiles():
     """
     A turn has two parts to it:
     1. rolling the dice and generating the sum of the dice
@@ -424,7 +424,7 @@ def player_turn():
     dice_two = dice_roll()
     print(f"{name} rolled {dice_one} and a {dice_two}")
 
-    dice_sum = dice_sum = dice_one + dice_two
+    dice_sum = dice_one + dice_two
     print(f"The sum of the dices are {dice_sum}.\n")
 
     # tile_choosen = input("Please choose the tiles to close:\n")
@@ -438,11 +438,11 @@ def player_turn():
         print(value_dice)
         # try to remove 2, if not possible remove 1
         try:
-            player_tiles.remove(1)
+            player_array.remove(1)
             print(" a 1.")
         except ValueError:
             try:
-                player_tiles.remove(2)
+                player_array.remove(2)
                 print(" a 2.")
             except ValueError:
                 print(value_error)
@@ -450,12 +450,12 @@ def player_turn():
         print(value_dice)
         # try to remove 3 or 2, 1
         try:
-            player_tiles.remove(2)
-            player_tiles.remove(1)
+            player_array.remove(2)
+            player_array.remove(1)
             print(" a 2 and a 1.")
         except ValueError:
             try:
-                player_tiles.remove(3)
+                player_array.remove(3)
                 print(" a 3")
             except ValueError:
                 print(value_error)
@@ -463,12 +463,12 @@ def player_turn():
         print(value_dice)
         # try to remove 4 or 2 or 3,1
         try:
-            player_tiles.remove(4)
+            player_array.remove(4)
             print(" a 4.")
         except ValueError:
             try:
-                player_tiles.remove(1)
-                player_tiles.remove(3)
+                player_array.remove(1)
+                player_array.remove(3)
                 print(" 3 and 1.")
             except ValueError:
                 print(value_error)
@@ -476,17 +476,17 @@ def player_turn():
         print(value_dice)
         # try to remove 5 or 3, 2 or 4,1
         try:
-            player_tiles.remove(5)
+            player_array.remove(5)
             print(" a 5.")
         except ValueError:
             try:
-                player_tiles.remove(1)
-                player_tiles.remove(4)
+                player_array.remove(1)
+                player_array.remove(4)
                 print(" 4 and 1.")
             except ValueError:
                 try:
-                    player_tiles.remove(2)
-                    player_tiles.remove(3)
+                    player_array.remove(2)
+                    player_array.remove(3)
                     print(" 3 and 2.")
                 except ValueError:
                     print(value_error)
@@ -494,16 +494,16 @@ def player_turn():
         print(value_dice)
         # try to remove 6 or 3 or 4, 2
         try:
-            player_tiles.remove(6)
+            player_array.remove(6)
             print(" a 6.")
         except ValueError:
             try:
-                player_tiles.remove(3)
+                player_array.remove(3)
                 print(" a 3.")
             except ValueError:
                 try:
-                    player_tiles.remove(2)
-                    player_tiles.remove(4)
+                    player_array.remove(2)
+                    player_array.remove(4)
                     print(" 4 and 2.")
                 except ValueError:
                     print(value_error)
@@ -511,28 +511,28 @@ def player_turn():
         print(value_dice)
         # try to remove 7 or 6,1 or 5,2 or 4,3 or 3,2,1
         try:
-            player_tiles.remove(7)
+            player_array.remove(7)
             print(" a 7.")
         except ValueError:
             try:
-                player_tiles.remove(6)
-                player_tiles.remove(1)
+                player_array.remove(6)
+                player_array.remove(1)
                 print(" 6 and 1.")
             except ValueError:
                 try:
-                    player_tiles.remove(5)
-                    player_tiles.remove(2)
+                    player_array.remove(5)
+                    player_array.remove(2)
                     print(" 5 and 2.")
                 except ValueError:
                     try:
-                        player_tiles.remove(4)
-                        player_tiles.remove(3)
+                        player_array.remove(4)
+                        player_array.remove(3)
                         print(" 4 and 3.")
                     except ValueError:
                         try:
-                            player_tiles.remove(4)
-                            player_tiles.remove(2)
-                            player_tiles.remove(1)
+                            player_array.remove(4)
+                            player_array.remove(2)
+                            player_array.remove(1)
                             print(" 4, 2 and 1.")
                         except ValueError:
                             print(value_error)
@@ -540,34 +540,34 @@ def player_turn():
         print(value_dice)
         # try to remove 8 or 7,1 or 6,2 or 5,3 or 5,2,1 or 4,3,1
         try:
-            player_tiles.remove(8)
+            player_array.remove(8)
             print(" a 8.")
         except ValueError:
             try:
-                player_tiles.remove(7)
-                player_tiles.remove(1)
+                player_array.remove(7)
+                player_array.remove(1)
                 print(" 7 and 1.")
             except ValueError:
                 try:
-                    player_tiles.remove(6)
-                    player_tiles.remove(2)
+                    player_array.remove(6)
+                    player_array.remove(2)
                     print(" 6 and 2.")
                 except ValueError:
                     try:
-                        player_tiles.remove(5)
-                        player_tiles.remove(3)
+                        player_array.remove(5)
+                        player_array.remove(3)
                         print(" 5 and 3.")
                     except ValueError:
                         try:
-                            player_tiles.remove(5)
-                            player_tiles.remove(2)
-                            player_tiles.remove(1)
+                            player_array.remove(5)
+                            player_array.remove(2)
+                            player_array.remove(1)
                             print(" 5, 2 and 1.")
                         except ValueError:
                             try:
-                                player_tiles.remove(4)
-                                player_tiles.remove(3)
-                                player_tiles.remove(1)
+                                player_array.remove(4)
+                                player_array.remove(3)
+                                player_array.remove(1)
                                 print(" 4, 3 and 1.")
                             except ValueError:
                                 print(value_error)
@@ -575,39 +575,39 @@ def player_turn():
         print(value_dice)
         # try to remove 9 or 8,1 or 7,2 or 6,3 or 5,4 or 5,3,1 or 4,3,2
         try:
-            player_tiles.remove(9)
+            player_array.remove(9)
             print(" a 9.")
         except ValueError:
             try:
-                player_tiles.remove(8)
-                player_tiles.remove(1)
+                player_array.remove(8)
+                player_array.remove(1)
                 print(" 8 and 1.")
             except ValueError:
                 try:
-                    player_tiles.remove(7)
-                    player_tiles.remove(2)
+                    player_array.remove(7)
+                    player_array.remove(2)
                     print(" 7 and 2.")
                 except ValueError:
                     try:
-                        player_tiles.remove(6)
-                        player_tiles.remove(3)
+                        player_array.remove(6)
+                        player_array.remove(3)
                         print(" 6 and 3.")
                     except ValueError:
                         try:
-                            player_tiles.remove(5)
-                            player_tiles.remove(4)
+                            player_array.remove(5)
+                            player_array.remove(4)
                             print(" 5 and 4.")
                         except ValueError:
                             try:
-                                player_tiles.remove(5)
-                                player_tiles.remove(3)
-                                player_tiles.remove(1)
+                                player_array.remove(5)
+                                player_array.remove(3)
+                                player_array.remove(1)
                                 print(" 5, 3 and 1.")
                             except ValueError:
                                 try:
-                                    player_tiles.remove(4)
-                                    player_tiles.remove(3)
-                                    player_tiles.remove(2)
+                                    player_array.remove(4)
+                                    player_array.remove(3)
+                                    player_array.remove(2)
                                     print(" 4, 3 and 2.")
                                 except ValueError:
                                     print(value_error)
@@ -615,41 +615,41 @@ def player_turn():
         print(value_dice)
         # try to remove 9,1 or 8,2 or 7,3 or 6,4 or 6,3,1 or 5,4,1, or 5,3,2
         try:
-            player_tiles.remove(9)
-            player_tiles.remove(1)
+            player_array.remove(9)
+            player_array.remove(1)
             print(" 9 and 1.")
         except ValueError:
             try:
-                player_tiles.remove(8)
-                player_tiles.remove(2)
+                player_array.remove(8)
+                player_array.remove(2)
                 print(" 8 and 2.")
             except ValueError:
                 try:
-                    player_tiles.remove(7)
-                    player_tiles.remove(3)
+                    player_array.remove(7)
+                    player_array.remove(3)
                     print(" 7 and 3.")
                 except ValueError:
                     try:
-                        computer_tiles.remove(6)
-                        computer_tiles.remove(4)
+                        computer_array.remove(6)
+                        computer_array.remove(4)
                         print(" 6 and 4.")
                     except ValueError:
                         try:
-                            player_tiles.remove(6)
-                            player_tiles.remove(3)
-                            player_tiles.remove(1)
+                            player_array.remove(6)
+                            player_array.remove(3)
+                            player_array.remove(1)
                             print(" 6, 3 and 1.")
                         except ValueError:
                             try:
-                                player_tiles.remove(5)
-                                player_tiles.remove(4)
-                                player_tiles.remove(1)
+                                player_array.remove(5)
+                                player_array.remove(4)
+                                player_array.remove(1)
                                 print(" 5, 4 and 1.")
                             except ValueError:
                                 try:
-                                    player_tiles.remove(5)
-                                    player_tiles.remove(3)
-                                    player_tiles.remove(2)
+                                    player_array.remove(5)
+                                    player_array.remove(3)
+                                    player_array.remove(2)
                                     print(" 5, 3 and 2.")
                                 except ValueError:
                                     print(value_error)
@@ -658,47 +658,47 @@ def player_turn():
         # try to remove 9,2 or 8,3 or 7,4 or 6,5
         # or 7,3,1 or 6,4,1 or 6,3,2 or 5,4,2
         try:
-            player_tiles.remove(9)
-            player_tiles.remove(2)
+            player_array.remove(9)
+            player_array.remove(2)
             print(" 9 and 2.")
         except ValueError:
             try:
-                player_tiles.remove(8)
-                player_tiles.remove(3)
+                player_array.remove(8)
+                player_array.remove(3)
                 print(" 8 and 3.")
             except ValueError:
                 try:
-                    player_tiles.remove(7)
-                    player_tiles.remove(4)
+                    player_array.remove(7)
+                    player_array.remove(4)
                     print(" 7 and 4.")
                 except ValueError:
                     try:
-                        player_tiles.remove(6)
-                        player_tiles.remove(5)
+                        player_array.remove(6)
+                        player_array.remove(5)
                         print(" 6 and 5.")
                     except ValueError:
                         try:
-                            player_tiles.remove(7)
-                            player_tiles.remove(3)
-                            player_tiles.remove(1)
+                            player_array.remove(7)
+                            player_array.remove(3)
+                            player_array.remove(1)
                             print(" 7, 3 and 1.")
                         except ValueError:
                             try:
-                                player_tiles.remove(6)
-                                player_tiles.remove(4)
-                                player_tiles.remove(1)
+                                player_array.remove(6)
+                                player_array.remove(4)
+                                player_array.remove(1)
                                 print(" 6, 4 and 1.")
                             except ValueError:
                                 try:
-                                    player_tiles.remove(6)
-                                    player_tiles.remove(3)
-                                    player_tiles.remove(2)
+                                    player_array.remove(6)
+                                    player_array.remove(3)
+                                    player_array.remove(2)
                                     print(" 6, 3 and 2.")
                                 except ValueError:
                                     try:
-                                        player_tiles.remove(5)
-                                        player_tiles.remove(4)
-                                        player_tiles.remove(2)
+                                        player_array.remove(5)
+                                        player_array.remove(4)
+                                        player_array.remove(2)
                                         print(" 5, 4 and 2.")
                                     except ValueError:
                                         print(value_error)
@@ -707,65 +707,65 @@ def player_turn():
         # try to remove 9,3 or 9,2,1 or 8,4 or 8,3,1 or 7,5
         # or 7,4,1 or 7,3,2 or 6,4,2 or 6,5,1 or 5,4,3
         try:
-            player_tiles.remove(9)
-            player_tiles.remove(3)
+            player_array.remove(9)
+            player_array.remove(3)
             print(" 9 and 3.")
         except ValueError:
             try:
-                player_tiles.remove(9)
-                player_tiles.remove(2)
-                player_tiles.remove(1)
+                player_array.remove(9)
+                player_array.remove(2)
+                player_array.remove(1)
                 print(" 9, 2 and 1.")
             except ValueError:
                 try:
-                    player_tiles.remove(8)
-                    player_tiles.remove(4)
+                    player_array.remove(8)
+                    player_array.remove(4)
                     print(" 8 and 4.")
                 except ValueError:
                     try:
-                        player_tiles.remove(8)
-                        player_tiles.remove(3)
-                        player_tiles.remove(1)
+                        player_array.remove(8)
+                        player_array.remove(3)
+                        player_array.remove(1)
                         print(" 8, 3 and 1.")
                     except ValueError:
                         try:
-                            player_tiles.remove(7)
-                            player_tiles.remove(5)
+                            player_array.remove(7)
+                            player_array.remove(5)
                             print(" 7and 5.")
                         except ValueError:
                             try:
-                                player_tiles.remove(7)
-                                player_tiles.remove(4)
-                                player_tiles.remove(1)
+                                player_array.remove(7)
+                                player_array.remove(4)
+                                player_array.remove(1)
                                 print(" 7, 4 and 1.")
                             except ValueError:
                                 try:
-                                    player_tiles.remove(7)
-                                    player_tiles.remove(3)
-                                    player_tiles.remove(2)
+                                    player_array.remove(7)
+                                    player_array.remove(3)
+                                    player_array.remove(2)
                                     print(" 7, 3 and 2.")
                                 except ValueError:
                                     try:
-                                        player_tiles.remove(6)
-                                        player_tiles.remove(4)
-                                        player_tiles.remove(2)
+                                        player_array.remove(6)
+                                        player_array.remove(4)
+                                        player_array.remove(2)
                                         print(" 6, 4 and 2.")
                                     except ValueError:
                                         try:
-                                            player_tiles.remove(6)
-                                            player_tiles.remove(5)
-                                            player_tiles.remove(1)
+                                            player_array.remove(6)
+                                            player_array.remove(5)
+                                            player_array.remove(1)
                                             print(" 6, 5 and 1.")
                                         except ValueError:
                                             try:
-                                                player_tiles.remove(5)
-                                                player_tiles.remove(4)
-                                                player_tiles.remove(3)
+                                                player_array.remove(5)
+                                                player_array.remove(4)
+                                                player_array.remove(3)
                                                 print(" 5, 4 and 3.")
                                             except ValueError:
                                                 print(value_error)
 
-    print(f"My left-over tiles are: {player_tiles}\n")
+    print(f"My left-over tiles are: {player_array}\n")
 
 
 def start():
@@ -781,22 +781,33 @@ def start():
         game_rules()
         start()
     elif start_or_rules == 'game':
-        main()
+        game_round()
     else:
         print("Invalid entry, please enter 'game' to start a game or 'rules' to read the rules:\n")
         start()
 
 
-def main():
+def game_round():
     """
-    This is the main game function to play the game
+    This defines a round for the game:
+    A round has:
+    1. The players trun:
+    -> rolling the dice
+    -> imput of the tiles to close
+    -> closing the tiles
+    2. The computers turn:
+    -> rolling the dice
+    -> closing the tiles
+
+    This is repeated 9 times or until one of the arrys is empty.
     """
     i = 1
-    while i < 9:
+    while i <= 9:
         print(f"Round {i}\n")
-        player_turn()
-        computer_turn()
-        if player_tiles == [] or computer_tiles == []:
+        player_tiles()
+        computer_tiles()
+        input("Please press any key to continue.\n")
+        if player_array == [] or computer_array == []:
             break
         i += 1
 
@@ -805,6 +816,6 @@ def main():
 print("Welcome to the 'Shut the box'- Game")
 name = input("Please enter your name: ")
 print(f"Hello {name}.\nWould you like to start a new game or read the game rules?")
-player_tiles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-computer_tiles = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+player_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+computer_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 start()
