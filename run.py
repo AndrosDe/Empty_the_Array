@@ -61,7 +61,7 @@ def computer_tiles(dice_sum):
     remove() method to remove an element from the array.
     """
 
-    value_dice = f"{dice_sum}, so Python can remove... "
+    value_dice = f"{dice_sum}, so Python can close tile... "
     value_error = "Nothing! No tiles to close, ending the Pythons turn."
 
     # Defining the variables that will be the parameters
@@ -82,427 +82,201 @@ def computer_tiles(dice_sum):
         """
         Closing one tile taking dice_sum
         """
+        index = computer_array.index(dice_sum)
+        computer_array.insert(index, "X")
         computer_array.remove(dice_sum)
-        print(value_dice + f"a {dice_sum}.")
+        print(value_dice + f" {dice_sum}.")
 
     def closing_two_tiles(i, j):
         """
         Closing two tiles, according to the parameters
         """
-        computer_array.remove(i)
-        computer_array.remove(j)
-        print(value_dice + f"a {i} and a {j}.")
+        if (i, j) in computer_array:
+            index_i = computer_array.index(i)
+            index_j = computer_array.index(j)
+            computer_array.insert(index_i, "X")
+            computer_array.insert(index_j, "X")
+            computer_array.remove(i)
+            computer_array.remove(j)
+            print(value_dice + f" {i} and {j}.")
+        else:
+            computer_array.remove(100)
 
     def closing_three_tiles(i, j):
         """
         Closing three tiles, according to the parameters
         """
         k = dice_sum - (i + j)
-        computer_array.remove(i)
-        computer_array.remove(j)
-        computer_array.remove(k)
-        print(value_dice + f"a {i}, {j} and a {k}.")
+        if (i, j, k) in computer_array:
+            index_i = computer_array.index(i)
+            index_j = computer_array.index(j)
+            index_k = computer_array.index(k)
+            computer_array.insert(index_i, "X")
+            computer_array.insert(index_j, "X")
+            computer_array.insert(index_k, "X")
+            computer_array.remove(i)
+            computer_array.remove(j)
+            computer_array.remove(k)
+            print(value_dice + f" {i}, {j} and {k}.")
+        else:
+            computer_array.remove(100)
 
     try:
         closing_one_tile(dice_sum)
     except ValueError:
-        if one and one_less in computer_array:
-            try:
-                closing_two_tiles(one, one_less)
-            except ValueError:
-                print(value_dice + value_error)
-        elif two and two_less in computer_array:
+        try:
+            closing_two_tiles(one, one_less)
+        except ValueError:
             try:
                 closing_two_tiles(two, two_less)
             except ValueError:
-                print(value_dice + value_error)
-        elif three and three_less in computer_array:
-            try:
-                closing_two_tiles(three, three_less)
-            except ValueError:
-                print(value_dice + value_error)
-        elif four and four_less in computer_array:
-            try:
-                closing_two_tiles(four, four_less)
-            except ValueError:
-                print(value_dice + value_error)
-        elif five and five_less in computer_array:
-            try:
-                closing_two_tiles(five, five_less)
-            except ValueError:
-                print(value_dice + value_error)
-        elif one and two and (dice_sum - (one + two)) in computer_array:
-            try:
-                closing_three_tiles(one, two)
-            except ValueError:
-                print(value_dice + value_error)
-        elif one and three and (dice_sum - (one + three)) in computer_array:
-            try:
-                closing_three_tiles(one, three)
-            except ValueError:
-                print(value_dice + value_error)
-        elif one and four and (dice_sum - (one + four)) in computer_array:
-            try:
-                closing_three_tiles(one, four)
-            except ValueError:
-                print(value_dice + value_error)
-        elif one and five and (dice_sum - (one + five)) in computer_array:
-            try:
-                closing_three_tiles(one, five)
-            except ValueError:
-                print(value_dice + value_error)
-        elif two and three and (dice_sum - (two + three)) in computer_array:
-            try:
-                closing_three_tiles(two, three)
-            except ValueError:
-                print(value_dice + value_error)
-        elif two and four and (dice_sum - (two + four)) in computer_array:
-            try:
-                closing_three_tiles(two, four)
-            except ValueError:
-                print(value_dice + value_error)
-        elif three and four and (dice_sum - (three + four)) in computer_array:
-            try:
-                closing_three_tiles(three, four)
-            except ValueError:
-                print(value_dice + value_error)
-        else:
-            print(value_dice + value_error)
-
-    print(f"Pythons left-over tiles are: {computer_array}\n")
-
-
-def player_tiles(dice_sum):
-    """
-    Closing the appropriate tiles if they are open.
-    To "close" the tiles we use the remove() method
-    to remove an element from the array.
-
-    """
-    # tile_choosen = input("Please choose the tiles to close:\n")
-
-    value_dice = f"{dice_sum}, so you can remove... "
-    value_error = "Nothing! No tiles to close, ending the your turn."
-
-    if dice_sum == 2:
-        # try to remove 2, if not possible remove 1
-        try:
-            player_array.remove(1)
-            print(value_dice + "a 1.")
-        except ValueError:
-            try:
-                player_array.remove(2)
-                print(value_dice + "a 2.")
-            except ValueError:
-                print(value_dice + value_error)
-    elif dice_sum == 3:
-        # try to remove 3 or 2, 1
-        try:
-            player_array.remove(2)
-            player_array.remove(1)
-            print(value_dice + "a 2 and a 1.")
-        except ValueError:
-            try:
-                player_array.remove(3)
-                print(value_dice + "a 3")
-            except ValueError:
-                print(value_dice + value_error)
-    elif dice_sum == 4:
-        # try to remove 4 or 2 or 3,1
-        try:
-            player_array.remove(4)
-            print(value_dice + "a 4.")
-        except ValueError:
-            try:
-                player_array.remove(1)
-                player_array.remove(3)
-                print(value_dice + "3 and 1.")
-            except ValueError:
-                print(value_dice + value_error)
-    elif dice_sum == 5:
-        # try to remove 5 or 3, 2 or 4,1
-        try:
-            player_array.remove(5)
-            print(value_dice + "a 5.")
-        except ValueError:
-            try:
-                player_array.remove(1)
-                player_array.remove(4)
-                print(value_dice + "4 and 1.")
-            except ValueError:
                 try:
-                    player_array.remove(2)
-                    player_array.remove(3)
-                    print(value_dice + "3 and 2.")
-                except ValueError:
-                    print(value_dice + value_error)
-    elif dice_sum == 6:
-        # try to remove 6 or 3 or 4, 2
-        try:
-            player_array.remove(6)
-            print(value_dice + "a 6.")
-        except ValueError:
-            try:
-                player_array.remove(3)
-                print(value_dice + "a 3.")
-            except ValueError:
-                try:
-                    player_array.remove(2)
-                    player_array.remove(4)
-                    print(value_dice + "4 and 2.")
-                except ValueError:
-                    print(value_dice + value_error)
-    elif dice_sum == 7:
-        # try to remove 7 or 6,1 or 5,2 or 4,3 or 3,2,1
-        try:
-            player_array.remove(7)
-            print(value_dice + "a 7.")
-        except ValueError:
-            try:
-                player_array.remove(6)
-                player_array.remove(1)
-                print(value_dice + "6 and 1.")
-            except ValueError:
-                try:
-                    player_array.remove(5)
-                    player_array.remove(2)
-                    print(value_dice + "5 and 2.")
+                    closing_two_tiles(three, three_less)
                 except ValueError:
                     try:
-                        player_array.remove(4)
-                        player_array.remove(3)
-                        print(value_dice + "4 and 3.")
+                        closing_two_tiles(four, four_less)
                     except ValueError:
                         try:
-                            player_array.remove(4)
-                            player_array.remove(2)
-                            player_array.remove(1)
-                            print(value_dice + "4, 2 and 1.")
-                        except ValueError:
-                            print(value_dice + value_error)
-    elif dice_sum == 8:
-        # try to remove 8 or 7,1 or 6,2 or 5,3 or 5,2,1 or 4,3,1
-        try:
-            player_array.remove(8)
-            print(value_dice + "a 8.")
-        except ValueError:
-            try:
-                player_array.remove(7)
-                player_array.remove(1)
-                print(value_dice + "7 and 1.")
-            except ValueError:
-                try:
-                    player_array.remove(6)
-                    player_array.remove(2)
-                    print(value_dice + "6 and 2.")
-                except ValueError:
-                    try:
-                        player_array.remove(5)
-                        player_array.remove(3)
-                        print(value_dice + "5 and 3.")
-                    except ValueError:
-                        try:
-                            player_array.remove(5)
-                            player_array.remove(2)
-                            player_array.remove(1)
-                            print(value_dice + "5, 2 and 1.")
+                            closing_two_tiles(five, five_less)
                         except ValueError:
                             try:
-                                player_array.remove(4)
-                                player_array.remove(3)
-                                player_array.remove(1)
-                                print(value_dice + "4, 3 and 1.")
-                            except ValueError:
-                                print(value_dice + value_error)
-    elif dice_sum == 9:
-        # try to remove 9 or 8,1 or 7,2 or 6,3 or 5,4 or 5,3,1 or 4,3,2
-        try:
-            player_array.remove(9)
-            print(value_dice + "a 9.")
-        except ValueError:
-            try:
-                player_array.remove(8)
-                player_array.remove(1)
-                print(value_dice + "8 and 1.")
-            except ValueError:
-                try:
-                    player_array.remove(7)
-                    player_array.remove(2)
-                    print(value_dice + "7 and 2.")
-                except ValueError:
-                    try:
-                        player_array.remove(6)
-                        player_array.remove(3)
-                        print(value_dice + "6 and 3.")
-                    except ValueError:
-                        try:
-                            player_array.remove(5)
-                            player_array.remove(4)
-                            print(value_dice + "5 and 4.")
-                        except ValueError:
-                            try:
-                                player_array.remove(5)
-                                player_array.remove(3)
-                                player_array.remove(1)
-                                print(value_dice + "5, 3 and 1.")
+                                closing_three_tiles(one, two)
                             except ValueError:
                                 try:
-                                    player_array.remove(4)
-                                    player_array.remove(3)
-                                    player_array.remove(2)
-                                    print(value_dice + "4, 3 and 2.")
-                                except ValueError:
-                                    print(value_dice + value_error)
-    elif dice_sum == 10:
-        # try to remove 9,1 or 8,2 or 7,3 or 6,4 or 6,3,1 or 5,4,1, or 5,3,2
-        try:
-            player_array.remove(9)
-            player_array.remove(1)
-            print(value_dice + "9 and 1.")
-        except ValueError:
-            try:
-                player_array.remove(8)
-                player_array.remove(2)
-                print(value_dice + "8 and 2.")
-            except ValueError:
-                try:
-                    player_array.remove(7)
-                    player_array.remove(3)
-                    print(value_dice + "7 and 3.")
-                except ValueError:
-                    try:
-                        computer_array.remove(6)
-                        computer_array.remove(4)
-                        print(value_dice + "6 and 4.")
-                    except ValueError:
-                        try:
-                            player_array.remove(6)
-                            player_array.remove(3)
-                            player_array.remove(1)
-                            print(value_dice + "6, 3 and 1.")
-                        except ValueError:
-                            try:
-                                player_array.remove(5)
-                                player_array.remove(4)
-                                player_array.remove(1)
-                                print(value_dice + "5, 4 and 1.")
-                            except ValueError:
-                                try:
-                                    player_array.remove(5)
-                                    player_array.remove(3)
-                                    player_array.remove(2)
-                                    print(value_dice + "5, 3 and 2.")
-                                except ValueError:
-                                    print(value_dice + value_error)
-    elif dice_sum == 11:
-        # try to remove 9,2 or 8,3 or 7,4 or 6,5
-        # or 7,3,1 or 6,4,1 or 6,3,2 or 5,4,2
-        try:
-            player_array.remove(9)
-            player_array.remove(2)
-            print(value_dice + "9 and 2.")
-        except ValueError:
-            try:
-                player_array.remove(8)
-                player_array.remove(3)
-                print(value_dice + "8 and 3.")
-            except ValueError:
-                try:
-                    player_array.remove(7)
-                    player_array.remove(4)
-                    print(value_dice + "7 and 4.")
-                except ValueError:
-                    try:
-                        player_array.remove(6)
-                        player_array.remove(5)
-                        print(value_dice + "6 and 5.")
-                    except ValueError:
-                        try:
-                            player_array.remove(7)
-                            player_array.remove(3)
-                            player_array.remove(1)
-                            print(value_dice + "7, 3 and 1.")
-                        except ValueError:
-                            try:
-                                player_array.remove(6)
-                                player_array.remove(4)
-                                player_array.remove(1)
-                                print(value_dice + "6, 4 and 1.")
-                            except ValueError:
-                                try:
-                                    player_array.remove(6)
-                                    player_array.remove(3)
-                                    player_array.remove(2)
-                                    print(value_dice + "6, 3 and 2.")
+                                    closing_three_tiles(one, three)
                                 except ValueError:
                                     try:
-                                        player_array.remove(5)
-                                        player_array.remove(4)
-                                        player_array.remove(2)
-                                        print(value_dice + "5, 4 and 2.")
-                                    except ValueError:
-                                        print(value_dice + value_error)
-    elif dice_sum == 12:
-        # try to remove 9,3 or 9,2,1 or 8,4 or 8,3,1 or 7,5
-        # or 7,4,1 or 7,3,2 or 6,4,2 or 6,5,1 or 5,4,3
-        try:
-            player_array.remove(9)
-            player_array.remove(3)
-            print(value_dice + "9 and 3.")
-        except ValueError:
-            try:
-                player_array.remove(9)
-                player_array.remove(2)
-                player_array.remove(1)
-                print(value_dice + "9, 2 and 1.")
-            except ValueError:
-                try:
-                    player_array.remove(8)
-                    player_array.remove(4)
-                    print(value_dice + "8 and 4.")
-                except ValueError:
-                    try:
-                        player_array.remove(8)
-                        player_array.remove(3)
-                        player_array.remove(1)
-                        print(value_dice + "8, 3 and 1.")
-                    except ValueError:
-                        try:
-                            player_array.remove(7)
-                            player_array.remove(5)
-                            print(value_dice + "7 and 5.")
-                        except ValueError:
-                            try:
-                                player_array.remove(7)
-                                player_array.remove(4)
-                                player_array.remove(1)
-                                print(value_dice + "7, 4 and 1.")
-                            except ValueError:
-                                try:
-                                    player_array.remove(7)
-                                    player_array.remove(3)
-                                    player_array.remove(2)
-                                    print(value_dice + "7, 3 and 2.")
-                                except ValueError:
-                                    try:
-                                        player_array.remove(6)
-                                        player_array.remove(4)
-                                        player_array.remove(2)
-                                        print(value_dice + "6, 4 and 2.")
+                                        closing_three_tiles(one, four)
                                     except ValueError:
                                         try:
-                                            player_array.remove(6)
-                                            player_array.remove(5)
-                                            player_array.remove(1)
-                                            print(value_dice + "6, 5 and 1.")
+                                            closing_three_tiles(one, five)
                                         except ValueError:
                                             try:
-                                                player_array.remove(5)
-                                                player_array.remove(4)
-                                                player_array.remove(3)
-                                                print(value_dice + "5, 4 and 3.")
+                                                closing_three_tiles(two, three)
                                             except ValueError:
-                                                print(value_dice + value_error)
+                                                try:
+                                                    closing_three_tiles(two, four)
+                                                except ValueError:
+                                                    try:
+                                                        closing_three_tiles(three, four)
+                                                    except ValueError:
+                                                        print(value_dice + value_error)
+
+    print(f"Pythons tiles are: {computer_array}\n")
+
+
+def player_input(dice_sum):
+    """
+    Here we ask the player for stating how many tiles are to close in this round.
+    Should an invalid entry be made, the input request will be repeated.
+    """
+    print("How many tiles do you want to close in this round?\n")
+    value_player = input("Please enter one, two, three or none to continue: ")
+
+    if value_player == "one":
+        player_input_one(dice_sum)
+    elif value_player == "two":
+        player_input_two(dice_sum)
+    elif value_player == "three":
+        player_input_three(dice_sum)
+    elif value_player == "none":
+        print("Nothing! No tiles to close, ending the your turn.")
+    else:
+        print("Invalid input, you need to select one, two or three to continue.")
+        player_input(dice_sum)
+
+
+def player_input_one(dice_sum):
+    """
+    Here we ask the player for the tile to close in this round.
+    It will be checked if the input matches the sum of bot dices and if the tiles is still open in the array.
+    Should an invalid entry be made, the previous input request will be repeated.
+    If all is fine the tile will be closed.
+    """
+    one_tile_choosen = input("Please enter the tile to close:\n")
+    tile_set_one = int(one_tile_choosen)
+    print(tile_set_one)
+
+    if tile_set_one == dice_sum:
+        if tile_set_one in player_array:
+            index = player_array.index(tile_set_one)
+            player_array.insert(index, "X")
+            player_array.remove(tile_set_one)
+            print(f"Closing tile {tile_set_one}.")
+        else:
+            print("This tile was already closed. Another tile mus be selected.")
+            player_input(dice_sum)
+    else:
+        print("If you only want to close 'one' tile, the value must match the value of both dices.")
+        player_input(dice_sum)
+
+    print(f"Your left-over tiles are: {player_array}\n")
+
+
+def player_input_two(dice_sum):
+    """
+    Here we ask the player for two tiles to close in this round.
+    It will be checked if the sum of the input matches the sum of bot dices and if the tiles is still open in the array.
+    Should an invalid entry be made, the previous input request will be repeated.
+    If all is fine the tile will be closed.
+    """
+    two_tile_choosen = input("Please enter the two tile to close:\n")
+    tile_set_two = int(two_tile_choosen)
+    print(tile_set_two)
+
+    if sum(tile_set_two) == dice_sum:
+        i = tile_set_two[0]
+        j = tile_set_two[1]
+        if (i, j) in player_array:
+            index_i = player_array.index(i)
+            index_j = player_array.index(j)
+            player_array.insert(index_i, "X")
+            player_array.insert(index_j, "X")
+            player_array.remove(i)
+            player_array.remove(j)
+            print(f"Closing tiles {i} and {j}.")
+        else:
+            print("This tile was already closed and you must close both of them. Other tiles mus be selected.")
+            player_input(dice_sum)
+    else:
+        print("If you only want to close 'two' tiles, the value of both tiles must match the value of both dices.")
+        player_input(dice_sum)
+
+    print(f"Your left-over tiles are: {player_array}\n")
+
+
+def player_input_three(dice_sum):
+    """
+    Here we ask the player for three tile to close in this round.
+    It will be checked if the sum input matches the sum of bot dices and if the tiles is still open in the array.
+    Should an invalid entry be made, the previous input request will be repeated.
+    If all is fine the tile will be closed.
+    """
+    three_tile_choosen = input("Please enter the three tile to close:\n")
+    tile_set_three = int(three_tile_choosen)
+    print(tile_set_three)
+
+    if sum(tile_set_three) == dice_sum:
+        i = tile_set_three[0]
+        j = tile_set_three[1]
+        k = tile_set_three[2]
+        if {i, j, k} in player_array:
+            index_i = player_array.index(i)
+            index_j = player_array.index(j)
+            index_k = player_array.index(k)
+            player_array.insert(index_i, "X")
+            player_array.insert(index_j, "X")
+            player_array.insert(index_k, "X")
+            player_array.remove(i)
+            player_array.remove(j)
+            player_array.remove(k)
+            print(f"Closing tiles {i}, {j} and {k}.")
+        else:
+            print("This tile was already closed and you must close all of them. Other tiles mus be selected.")
+            player_input(dice_sum)
+    else:
+        print("If you only want to close 'three' tiles, the value of all tiles must match the value of both dices.")
+        player_input(dice_sum)
 
     print(f"Your left-over tiles are: {player_array}\n")
 
@@ -551,7 +325,7 @@ def game_round(name):
 
         dice_sum = dice_one + dice_two
         print(f"The sum of the dices is: {dice_sum}\n")
-        player_tiles(dice_sum)
+        player_input(dice_sum)
 
         print("Python is rolling the dice...\n")
         dice_one = dice_roll()
@@ -563,7 +337,7 @@ def game_round(name):
         computer_tiles(dice_sum)
 
         input("Please press any key to continue.\n")
-        if player_array == [] or computer_array == []:
+        if player_array == ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'] or computer_array == ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']:
             break
         i += 1
 
