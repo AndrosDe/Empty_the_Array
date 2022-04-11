@@ -68,7 +68,7 @@ For example, if the numbers 2, 3, and 5 are still open the player's score is
 '''
     # To make the actual code more readable,
     # these variables were used to divorce the text for the program structure.
-    # Input requests were added to prevent the whole text from being shown at once.
+    # Input requests to prevent the whole text from being shown at once.
     print(rule_part_one)
     input("Please press any key to continue.\n")
 
@@ -229,7 +229,7 @@ def computer_tiles_i(dice_sum):
     try:
         closing_one_tile(dice_sum)
         print(value_dice + f" {dice_sum}.")
-    # However if that tile is also no longer open, no tiles will be closed this round.
+    # However if that tile is closed, no tiles will be closed this round.
     except ValueError:
         print(value_dice)
         print("Nothing! No tiles to close, ending the Pythons turn.")
@@ -330,14 +330,14 @@ def player_input_two(dice_sum):
         print(f"Invalid data: {e}, please try again.\n")
         player_input(dice_sum)
 
-    # Validating if the numbers are different, since you can't use the same number twice.
+    # Validating if the numbers are different, you can use a number only once.
     tile_list = [int(tile) for tile in tile_set_two]
 
     if tile_list[0] == tile_list[1]:
         print("Invalid numbers, please choose different numbers.")
         player_input_two(dice_sum)
 
-    # Validating if the numbers chosen add up to have equal value as the added value of the dice.
+    # Validating if value of the dices and the numbers chosen are equal.
     if sum(tile_list) == dice_sum:
         i = tile_list[0]
         j = tile_list[1]
@@ -389,7 +389,7 @@ def player_input_three(dice_sum):
         print(f"Invalid data: {e}, please try again.\n")
         player_input(dice_sum)
 
-    # Validating if the numbers are different, since you can't use the same number twice.
+    # Validating if the numbers are different, you can use a number only once.
     tile_list = [int(tile) for tile in tile_set_three]
 
     if tile_list[0] == tile_list[1]:
@@ -402,7 +402,7 @@ def player_input_three(dice_sum):
         print("Invalid numbers, please choose different numbers.")
         player_input_three(dice_sum)
 
-    # Validating if the numbers chosen add up to have equal value as the added value of the dice.
+    # Validating if value of the dices and the numbers chosen are equal.
     if sum(tile_list) == dice_sum:
         i = tile_list[0]
         j = tile_list[1]
