@@ -1,9 +1,9 @@
 # WELLCOME TO "THE EMPTY THE ARRAY" GAME.
-# THis is a coded variant of the dice-game "Shut the box"
-# Shut the box (also called canoga, batten down the hatches or trick-track)
+# THis is a coded variant of the dice game "Shut the box"
+# Shut the box (also called Canoga, batten down the hatches, or trick-track)
 # is a game of dice for one or more players.
 # Traditionally, a counting box is used with tiles numbered 1 to 9.
-# More can information on the game can be found here:
+# More information on the game here:
 # https://en.wikipedia.org/wiki/Shut_the_box
 
 # Modules:
@@ -12,7 +12,7 @@ import random
 
 # Gobal Variables
 # These variables will be used by different functions in the game.
-# Values will be validated, removed and, in the end,
+# The Values in the arrays will be validated, removed, and, in the end,
 # added together by these functions.
 PLAYER_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 COMPUTER_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -20,20 +20,23 @@ COMPUTER_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 def game_rules():
     """
-    Here the player gets a print out on how to play the game.
+    Here the player gets a printout on how to play the game.
     """
     rule = '''
-At the start of the game you will start with a full array from 1 to 9.
-During the game, each player plays in turn for 9 rounds
-or if an array is empty. The remaining entries in the array are summed up.
+At the start of the game, you will start with a full array from 1 to 9.
+During the game, each player plays in turn for nine rounds
+or until an array is empty.
+
+The remaining value entries in the array, are then added together.
 The player with the lowest sum will win the match.
 
 A round will playout like this:
-The player begins the their turn by rolling the die or dice.
+The player begins their turn by rolling the die or dice.
 After throwing, the player adds up (or subtracts) the dice and then removes one
-of any combination of open numbers that sums to the total number of the dices.
+of any combination of numbers that sum to the total number of the dices,
+if all of these numbers are still available.
 
-For example, if the total number is 8 the player may choose any of the
+For example, if the total number is "8" the player may choose any of the
 following sets of numbers (if all of the numbers are available in the array):
     - 8
     - 7, 1
@@ -42,12 +45,13 @@ following sets of numbers (if all of the numbers are available in the array):
     - 5, 2, 1
     - 4, 3, 1
 
-Then the next players turn comes and chooses a set of tiles to close.
-If the dice yield now numbers to close any tile, then the player must "pass".
+Then the next player's turn comes and chooses a set of tiles to close.
+If the dice yield no number(s) to close (all) tile(s),
+then the player must "pass".
 
 Calculating Score:
-At the 9th round or when the one of the player has an empty array,
-the players scores the sum of remaining numbers in the array.
+At the end of the 9th round or when one of the players has an empty array,
+the player scores the sum of the remaining numbers in the array.
 For example, if the numbers 2, 3, and 5 are still open the player's score is
 10 (2 + 3 + 5 = 10).
 '''
@@ -56,8 +60,8 @@ For example, if the numbers 2, 3, and 5 are still open the player's score is
 
 def dice_roll():
     """
-    This will create a random number between 1 and 6.
-    Just like a dice with 6 sides would do.
+    This function will create a random number between 1 and 6.
+    Just like a dice with six sides would do.
     """
     dice = random.randrange(1, 6)
     return dice
@@ -72,7 +76,7 @@ def closing_one_tile(dice_sum):
 
 def closing_two_tiles(i, j):
     """
-    Closing two tiles, according to the parameters
+    Closing two tiles, according to the parameters.
     """
     if i in COMPUTER_ARRAY:
         if j in COMPUTER_ARRAY:
@@ -87,7 +91,7 @@ def closing_two_tiles(i, j):
 
 def closing_three_tiles(i, j, dice_sum):
     """
-    Closing three tiles, with the remove() method
+    Closing three tiles with the remove() method
     to remove an element from the array
     and putting an 'X' there instead,
     according to the parameters
@@ -110,7 +114,7 @@ def closing_three_tiles(i, j, dice_sum):
 
 def computer_tiles_iii(dice_sum):
     """
-    Closing the three appropriate tiles, if they are open.
+    Close the three appropriate tiles if they are open.
     """
     # Defining the variables that will be the parameters
     # for the closing tile functions
@@ -149,7 +153,7 @@ def computer_tiles_iii(dice_sum):
 
 def computer_tiles_ii(dice_sum):
     """
-    Closing the two appropriate tiles, if they are open.
+    Close the two appropriate tiles if they are open.
     """
     # Defining the variables that will be the parameters
     # for the closing tile functions
@@ -185,7 +189,7 @@ def computer_tiles_ii(dice_sum):
 
 def computer_tiles_i(dice_sum):
     """
-    Closing the one appropriate tiles, if it is open.
+    Close the one appropriate tiles if it is open.
     """
     value_dice = "So Python can close... "
 
@@ -199,10 +203,10 @@ def computer_tiles_i(dice_sum):
 
 def player_input(dice_sum):
     """
-    Here we ask the player for stating
-    how many tiles are to close in this round.
+    Here we ask the player how many tiles
+    should be closed in this round.
     Should an invalid entry be made,
-    the input request will be repeated.
+    then the player will be asked again.
     """
     print("How many tiles do you want to close in this round?\n")
     value_player = input("Please enter one, two, three or none to continue: ")
@@ -224,11 +228,10 @@ def player_input(dice_sum):
 def player_input_one(dice_sum):
     """
     Here we ask the player for the tile to close in this round.
-    It will be checked if the input matches the sum of bot dices
-    and if the tiles is still open in the array.
-    Should an invalid entry be made
-    the previous input request will be repeated.
-    If all is fine the tile will be closed.
+    It will check if the input matches the sum of bot dices
+    and if the tiles are still open in the array.
+    An invalid entry will repeat the previous input request.
+    If all is well, the tile will be closed.
     """
     one_tile_choosen = input("Please enter the tile to close:\n")
     tile_set_one = int(one_tile_choosen)
@@ -261,11 +264,10 @@ def player_input_one(dice_sum):
 def player_input_two(dice_sum):
     """
     Here we ask the player for two tiles to close in this round.
-    It will be checked if the sum of the input matches
-    the sum of bot dices and if the tiles is still open in the array.
-    Should an invalid entry be made,
-    the previous input request will be repeated.
-    If all is fine the tile will be closed.
+    It will check if the sum of the input matches
+    the sum of bot dices and if the tiles are still open in the array.
+    An invalid entry will repeat the previous input request.
+    If all is well, the tile will be closed.
     """
     print("Please enter the two tile to close.")
     two_tile_choosen = input("For example: 7, 1\n")
@@ -312,12 +314,11 @@ def player_input_two(dice_sum):
 
 def player_input_three(dice_sum):
     """
-    Here we ask the player for three tile to close in this round.
-    It will be checked if the sum input matches the sum of bot dices
-    and if the tiles is still open in the array.
-    Should an invalid entry be made,
-    the previous input request will be repeated.
-    If all is fine the tile will be closed.
+    Here we ask the player for three tiles to close in this round.
+    It will check if the sum input matches the sum of bot dices
+    and if the tiles are still open in the array.
+    An invalid entry will repeat the previous input request.
+    If all is well, the tile will be closed.
     """
     tile_closed = "This tile was already closed and you must close all tiles."
     three_tile_choosen = input("Please enter the three tile to close:\n")
@@ -377,7 +378,7 @@ def player_input_three(dice_sum):
 
 def start(name):
     """
-    This is the start up function where a player
+    The start-up function, where a player
     can read the rules or start up the game.
     """
     start_or_rules = input("""Please enter:
@@ -419,8 +420,8 @@ def score(name):
 
 def main_game(name):
     """
-    This is the main function for the game.
-    It defines a round for the game.
+    The main function of the game:
+    It defines a game round.
     A round has:
     1. The players trun:
     -> rolling the dice
@@ -430,9 +431,9 @@ def main_game(name):
     -> rolling the dice
     -> closing the tiles
 
-    This is repeated 9 times or until one of the arrays is empty.
+    The game ends after nine rounds or until one of the arrays is empty.
 
-    After that it will call up the score-function
+    After that, it will call up the score-function
     to determine the winner of the match.
     """
     i = 1
@@ -476,7 +477,7 @@ def main_game(name):
 
 def intro():
     """
-    This is the main function.
+    The intro function to the game, where the player can enter the name.
     """
     print("Welcome to the 'Empty the Array'- Game")
 
@@ -487,9 +488,9 @@ def intro():
     start(name)
 
 
-# Here we call up the game, with the intro-function,
+# Here we call up the game, with the intro function,
 # the main function will be called up a bit later,
-# This way the player only needs to enter the name once
+# This way the player name only needs to be entered once
 # and can start the match after reading the rules,
 # without starting the whole program again.
 intro()
