@@ -1,4 +1,4 @@
-# WELLCOME TO "THE EMPTY THE ARRAY" GAME.
+# WELLCOME TO THE "EMPTY THE ARRAY" GAME.
 # THis is a coded variant of the dice game "Shut the box"
 # Shut the box (also called Canoga, batten down the hatches, or trick-track)
 # is a game of dice for one or more players.
@@ -22,7 +22,9 @@ def game_rules():
     """
     Here the player gets a printout on how to play the game.
     """
-    rule = '''
+    rule_part_one = '''
+How the game is played:
+
 At the start of the game, you will start with a full array from 1 to 9.
 During the game, each player plays in turn for nine rounds
 or until an array is empty.
@@ -30,12 +32,16 @@ or until an array is empty.
 The remaining value entries in the array, are then added together.
 The player with the lowest sum will win the match.
 
+'''
+    rule_part_two = '''
 A round will playout like this:
 The player begins their turn by rolling the die or dice.
 After throwing, the player adds up (or subtracts) the dice and then removes one
 of any combination of numbers that sum to the total number of the dices,
 if all of these numbers are still available.
 
+'''
+    rule_part_three = '''
 For example, if the total number is "8" the player may choose any of the
 following sets of numbers (if all of the numbers are available in the array):
     - 8
@@ -49,13 +55,26 @@ Then the next player's turn comes and chooses a set of tiles to close.
 If the dice yield no number(s) to close (all) tile(s),
 then the player must "pass".
 
+'''
+
+    rule_part_four = '''
 Calculating Score:
 At the end of the 9th round or when one of the players has an empty array,
 the player scores the sum of the remaining numbers in the array.
 For example, if the numbers 2, 3, and 5 are still open the player's score is
 10 (2 + 3 + 5 = 10).
+
 '''
-    print(rule)
+    print(rule_part_one)
+    input("Please press any key to continue.\n")
+
+    print(rule_part_two)
+    input("Please press any key to continue.\n")
+
+    print(rule_part_three)
+    input("Please press any key to continue.\n")
+
+    print(rule_part_four)
 
 
 def dice_roll():
@@ -413,6 +432,9 @@ def score(name):
     if player_score > computer_score:
         print("Python has less points.")
         print("Python wins!\n")
+    elif player_score == computer_score:
+        print("We have a draw!\n")
+        print(f"Python and {name} have the same amount of points.")
     else:
         print(f"{name} has less points.")
         print(f"{name} wins!\n")
@@ -440,6 +462,7 @@ def main_game(name):
     empty = []
 
     while i <= 9:
+        print(" ")
         print(f"***** Round {i} ******\n")
 
         print("You are rolling your dice...\n")
@@ -452,6 +475,7 @@ def main_game(name):
         print(f"Your tiles are: {PLAYER_ARRAY}\n")
         player_input(dice_sum)
         print(f"Your left-over tiles are: {PLAYER_ARRAY}\n")
+        input("Please press any key to continue.\n")
 
         print("Python is rolling the dice...\n")
         dice_one = dice_roll()
@@ -463,8 +487,8 @@ def main_game(name):
         print(f"Pythons tiles are: {PLAYER_ARRAY}\n")
         computer_tiles_iii(dice_sum)
         print(f"Pythons left-over tiles are: {COMPUTER_ARRAY}\n")
-
         input("Please press any key to continue.\n")
+
         if PLAYER_ARRAY == empty or COMPUTER_ARRAY == empty:
             break
         i += 1
