@@ -241,22 +241,36 @@ def player_input(dice_sum):
     Should an invalid entry be made, then the player will be asked again.
     """
     # Welcome message to the player input function of the game.
+    print(" ")
+    print(f"Your tiles are: {PLAYER_ARRAY}\n")
+    print("How many tiles do you want to close in this round?\n")
+    value_player = ""
     value_player = input("Please enter one, two, three or none to continue: ")
 
     # Validating the player's input, as only one of 4 choices can be made.
     # A quit option to end the game here could be added as well.
     if value_player == "none":
         print("None! No tiles to close, ending your turn.")
-    elif value_player == "one":
+    elif value_player == "one" or "1":
         player_input_one(dice_sum)
-    elif value_player == "two":
+    elif value_player == "two" or "2":
         player_input_two(dice_sum)
-    elif value_player == "three":
+    elif value_player == "three" or "3":
         player_input_three(dice_sum)
     else:
         print("Invalid input, you need to select:")
         print("'none','one','two' or 'three' to continue.")
         player_input(dice_sum)
+
+
+def player_input_length(dice_sum):
+    """
+    If an error by the length validation of the input appears,
+    then these messages will be displayed and the "player_input()" is calles.
+    """
+    print("Do you want to close a different amount of tiles?\n")
+    print(f"The sum of the dices is: {dice_sum}\n")
+    player_input(dice_sum)
 
 
 def player_input_one(dice_sum):
@@ -268,6 +282,7 @@ def player_input_one(dice_sum):
     If all is well, the tile will be closed.
     """
     # Welcome Message (with input request) for closing one tile.
+    one_tile_choosen = ""
     one_tile_choosen = input("Please enter the tile to close:\n")
     tile_set_one = int(one_tile_choosen)
 
@@ -282,7 +297,7 @@ def player_input_one(dice_sum):
     # Validating if exsactly one number was entered.
     if len(tile) != 1:
         print(f"One number is needed, you provided {len(tile_set_one)}")
-        player_input(dice_sum)
+        player_input_length(dice_sum)
 
     # Validating if the number chosen is equal to the added value of two dice.
     if tile_set_one == dice_sum:
@@ -311,6 +326,7 @@ def player_input_two(dice_sum):
     """
     # Welcome Message (with input request) for closing two tiles.
     print("Please enter the two tile to close.")
+    two_tile_choosen = ""
     two_tile_choosen = input("For example: 7, 1\n")
     tile_set_two = two_tile_choosen.split(",")
 
@@ -323,12 +339,13 @@ def player_input_two(dice_sum):
         player_input(dice_sum)
 
     # After making sure that all entries are number, we make a list.
+    tile_list = []
     tile_list = [int(tile) for tile in tile_set_two]
 
     # Validating if exsactly two numbers were entered.
     if len(tile_list) != 2:
         print(f"Two numbers are needed, you provided {len(tile_list)}")
-        player_input(dice_sum)
+        player_input_length(dice_sum)
 
     # Validating if the numbers are different, you can use a number only once.
     if tile_list[0] == tile_list[1]:
@@ -369,7 +386,8 @@ def player_input_three(dice_sum):
     If all is well, the tile will be closed.
     """
     # Welcome Message (with input request) for closing three tiles.
-    print("Please enter the three tile to close.")
+    print("Please enter the three tiles to close.")
+    three_tile_choosen = ""
     three_tile_choosen = input("For example: 5, 2, 1\n")
     tile_set_three = three_tile_choosen.split(",")
 
@@ -381,12 +399,13 @@ def player_input_three(dice_sum):
         print(f"Invalid data: {e}, please try again.\n")
         player_input(dice_sum)
 
+    tile_list = []
     tile_list = [int(tile) for tile in tile_set_three]
 
     # Validating if exsactly three numbers were entered.
     if len(tile_list) != 3:
         print(f"Three numbers are needed, you provided {len(tile_list)}")
-        player_input(dice_sum)
+        player_input_length(dice_sum)
 
     # Validating if the numbers are different, you can use a number only once.
     if tile_list[0] == tile_list[1]:
@@ -523,10 +542,8 @@ def main_game(name):
         dice_sum = dice_one + dice_two
         print(f"The sum of the dices is: {dice_sum}\n")
         # Reminding the player which tiles are open.
-        print(f"Your tiles are: {PLAYER_ARRAY}\n")
 
         # Asking for player input.
-        print("How many tiles do you want to close in this round?\n")
         player_input(dice_sum)
         print(f"Your left-over tiles are: {PLAYER_ARRAY}\n")
         input("Please press any key to continue.\n")
