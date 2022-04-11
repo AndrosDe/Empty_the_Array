@@ -1,4 +1,5 @@
-# WELLCOME TO "THE SHUT THE BOX" DICE-GAME PYTHON CODE
+# WELLCOME TO "THE EMPTY THE ARRAY" GAME.
+# THis is a coded variant of the dice-game "Shut the box"
 # Shut the box (also called canoga, batten down the hatches or trick-track)
 # is a game of dice for one or more players.
 # Traditionally, a counting box is used with tiles numbered 1 to 9.
@@ -9,15 +10,22 @@
 """ The random module will be used for the dice roll. """
 import random
 
+# Gobal Variables
+# These variables will be used by different functions in the game.
+# Values will be validated, removed and, in the end,
+# added together by these functions.
+PLAYER_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+COMPUTER_ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 
 def game_rules():
     """
     Here the player gets a print out on how to play the game.
     """
     rule = '''
-At the start of the game you will start with a full list from 1 to 9.
-During the game, each player plays in turn for 9 rounds or if a list is empty,
-after which the remaining entries in the list are sum up.
+At the start of the game you will start with a full array from 1 to 9.
+During the game, each player plays in turn for 9 rounds
+or if an array is empty. The remaining entries in the array are summed up.
 The player with the lowest sum will win the match.
 
 A round will playout like this:
@@ -26,7 +34,7 @@ After throwing, the player adds up (or subtracts) the dice and then removes one
 of any combination of open numbers that sums to the total number of the dices.
 
 For example, if the total number is 8 the player may choose any of the
-following sets of numbers (if all of the numbers are available in the list):
+following sets of numbers (if all of the numbers are available in the array):
     - 8
     - 7, 1
     - 6, 2
@@ -38,8 +46,8 @@ Then the next players turn comes and chooses a set of tiles to close.
 If the dice yield now numbers to close any tile, then the player must "pass".
 
 Calculating Score:
-At the 9th round or when the one of the player has an empty list,
-the players scores the sum of remaining numbers in the list.
+At the 9th round or when the one of the player has an empty array,
+the players scores the sum of remaining numbers in the array.
 For example, if the numbers 2, 3, and 5 are still open the player's score is
 10 (2 + 3 + 5 = 10).
 '''
@@ -59,17 +67,17 @@ def closing_one_tile(dice_sum):
     """
     Closing one tile taking dice_sum
     """
-    computer_array.remove(dice_sum)
+    COMPUTER_ARRAY.remove(dice_sum)
 
 
 def closing_two_tiles(i, j):
     """
     Closing two tiles, according to the parameters
     """
-    if i in computer_array:
-        if j in computer_array:
-            computer_array.remove(i)
-            computer_array.remove(j)
+    if i in COMPUTER_ARRAY:
+        if j in COMPUTER_ARRAY:
+            COMPUTER_ARRAY.remove(i)
+            COMPUTER_ARRAY.remove(j)
             print(f"So Python can close... {i} and {j}.")
         else:
             raise ValueError
@@ -85,12 +93,12 @@ def closing_three_tiles(i, j, dice_sum):
     according to the parameters
     """
     k = dice_sum - (i + j)
-    if i in computer_array:
-        if j in computer_array:
-            if k in computer_array:
-                computer_array.remove(i)
-                computer_array.remove(j)
-                computer_array.remove(k)
+    if i in COMPUTER_ARRAY:
+        if j in COMPUTER_ARRAY:
+            if k in COMPUTER_ARRAY:
+                COMPUTER_ARRAY.remove(i)
+                COMPUTER_ARRAY.remove(j)
+                COMPUTER_ARRAY.remove(k)
                 print(f"So Python can close... {i}, {j} and {k}.")
             else:
                 raise ValueError
@@ -237,8 +245,8 @@ def player_input_one(dice_sum):
         player_input(dice_sum)
 
     if tile_set_one == dice_sum:
-        if tile_set_one in player_array:
-            player_array.remove(tile_set_one)
+        if tile_set_one in PLAYER_ARRAY:
+            PLAYER_ARRAY.remove(tile_set_one)
             print(f"Closing tile {tile_set_one}.")
         else:
             print("This tile was already closed.")
@@ -283,10 +291,10 @@ def player_input_two(dice_sum):
     if sum(tile_list) == dice_sum:
         i = tile_list[0]
         j = tile_list[1]
-        if i in player_array:
-            if j in player_array:
-                player_array.remove(i)
-                player_array.remove(j)
+        if i in PLAYER_ARRAY:
+            if j in PLAYER_ARRAY:
+                PLAYER_ARRAY.remove(i)
+                PLAYER_ARRAY.remove(j)
                 print(f"Closing tiles {i} and {j}.")
             else:
                 print("This tile was already closed and you must close both.")
@@ -342,12 +350,12 @@ def player_input_three(dice_sum):
         i = tile_list[0]
         j = tile_list[1]
         k = tile_list[2]
-        if i in player_array:
-            if j in player_array:
-                if k in player_array:
-                    player_array.remove(i)
-                    player_array.remove(j)
-                    player_array.remove(k)
+        if i in PLAYER_ARRAY:
+            if j in PLAYER_ARRAY:
+                if k in PLAYER_ARRAY:
+                    PLAYER_ARRAY.remove(i)
+                    PLAYER_ARRAY.remove(j)
+                    PLAYER_ARRAY.remove(k)
                     print(f"Closing tiles {i}, {j} and {k}.")
                 else:
                     print(tile_closed)
@@ -380,7 +388,7 @@ def start(name):
         game_rules()
         start(name)
     elif start_or_rules == 'game':
-        game_round(name)
+        main_game(name)
     else:
         print("Invalid entry, please enter:")
         print("'game' to start a game")
@@ -388,9 +396,31 @@ def start(name):
         start(name)
 
 
-def game_round(name):
+def score(name):
     """
-    This defines a round for the game:
+    Calculating the score and determining the winner of the match
+    """
+    player_score = 0
+    computer_score = 0
+
+    player_score = player_score + sum(PLAYER_ARRAY)
+    computer_score = computer_score + sum(COMPUTER_ARRAY)
+
+    print(f"You got: {player_score} points!")
+    print(f"Python got: {computer_score} points!\n")
+
+    if player_score > computer_score:
+        print("Python has less points.")
+        print("Python wins!\n")
+    else:
+        print(f"{name} has less points.")
+        print(f"{name} wins!\n")
+
+
+def main_game(name):
+    """
+    This is the main function for the game.
+    It defines a round for the game.
     A round has:
     1. The players trun:
     -> rolling the dice
@@ -400,7 +430,10 @@ def game_round(name):
     -> rolling the dice
     -> closing the tiles
 
-    This is repeated 9 times or until one of the arrys is empty.
+    This is repeated 9 times or until one of the arrays is empty.
+
+    After that it will call up the score-function
+    to determine the winner of the match.
     """
     i = 1
     empty = []
@@ -415,9 +448,9 @@ def game_round(name):
 
         dice_sum = dice_one + dice_two
         print(f"The sum of the dices is: {dice_sum}\n")
-        print(f"Your tiles are: {player_array}\n")
+        print(f"Your tiles are: {PLAYER_ARRAY}\n")
         player_input(dice_sum)
-        print(f"Your left-over tiles are: {player_array}\n")
+        print(f"Your left-over tiles are: {PLAYER_ARRAY}\n")
 
         print("Python is rolling the dice...\n")
         dice_one = dice_roll()
@@ -426,45 +459,26 @@ def game_round(name):
 
         dice_sum = dice_one + dice_two
         print(f"The sum of the dices is: {dice_sum}\n")
-        print(f"Pythons tiles are: {player_array}\n")
+        print(f"Pythons tiles are: {PLAYER_ARRAY}\n")
         computer_tiles_iii(dice_sum)
-        print(f"Pythons left-over tiles are: {computer_array}\n")
+        print(f"Pythons left-over tiles are: {COMPUTER_ARRAY}\n")
 
         input("Please press any key to continue.\n")
-        if player_array == empty or computer_array == empty:
+        if PLAYER_ARRAY == empty or COMPUTER_ARRAY == empty:
             break
         i += 1
 
     print("Game completed.\n")
     score(name)
 
-
-def score(name):
-    """
-    Calculating the score and determining the winner of the match
-    """
-    player_score = 0
-    computer_score = 0
-
-    player_score = player_score + sum(player_array)
-    computer_score = computer_score + sum(computer_array)
-
-    print(f"You got: {player_score} points!")
-    print(f"Python got: {computer_score} points!\n")
-
-    if player_score > computer_score:
-        print("Python has less points.")
-        print("Python wins!")
-    else:
-        print(f"{name} has less points.")
-        print(f"{name} wins!")
+    print("***** Thank you for playing 'Empty the Array' *****")
 
 
-def main():
+def intro():
     """
     This is the main function.
     """
-    print("Welcome to the 'Shut the box'- Game")
+    print("Welcome to the 'Empty the Array'- Game")
 
     name = input("Please enter your name: ")
     print(f"Hello {name}.")
@@ -472,9 +486,10 @@ def main():
 
     start(name)
 
-# Here we call up the game:
 
-
-player_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-computer_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-main()
+# Here we call up the game, with the intro-function,
+# the main function will be called up a bit later,
+# This way the player only needs to enter the name once
+# and can start the match after reading the rules,
+# without starting the whole program again.
+intro()
