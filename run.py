@@ -22,6 +22,7 @@ def game_rules():
     """
     Here the player gets a printout on how to play the game.
     """
+    # The rules are split into 4 parts to prevent a "wall-of-text"-issue.
     rule_part_one = '''
 How the game is played:
 
@@ -65,6 +66,9 @@ For example, if the numbers 2, 3, and 5 are still open the player's score is
 10 (2 + 3 + 5 = 10).
 
 '''
+    # To make the actual code more readable,
+    # these variables were used to divorce the text for the program structure.
+    # Input requests were added to prevent the whole text from being shown at once.
     print(rule_part_one)
     input("Please press any key to continue.\n")
 
@@ -90,6 +94,7 @@ def closing_one_tile(dice_sum):
     """
     Closing one tile taking dice_sum
     """
+    # The remove-function was used as it targets "values" and not "index".
     COMPUTER_ARRAY.remove(dice_sum)
 
 
@@ -97,6 +102,8 @@ def closing_two_tiles(i, j):
     """
     Closing two tiles, according to the parameters.
     """
+    # The remove-function was used as it targets "values" and not "index".
+    # The validation checks if both numbers are in the array.
     if i in COMPUTER_ARRAY:
         if j in COMPUTER_ARRAY:
             COMPUTER_ARRAY.remove(i)
@@ -110,12 +117,12 @@ def closing_two_tiles(i, j):
 
 def closing_three_tiles(i, j, dice_sum):
     """
-    Closing three tiles with the remove() method
-    to remove an element from the array
-    and putting an 'X' there instead,
-    according to the parameters
+    Closing two tiles, according to the parameters.
     """
+    # The remove-function was used as it targets "values" and not "index".
+    # Third number must be the left over of the other two numbers and dice_sum.
     k = dice_sum - (i + j)
+    # The validation checks if all numbers are in the array.
     if i in COMPUTER_ARRAY:
         if j in COMPUTER_ARRAY:
             if k in COMPUTER_ARRAY:
@@ -136,13 +143,16 @@ def computer_tiles_iii(dice_sum):
     Close the three appropriate tiles if they are open.
     """
     # Defining the variables that will be the parameters
-    # for the closing tile functions
+    # for the closing tile functions.
     one = dice_sum - (dice_sum - 1)  # One
     two = dice_sum - (dice_sum - 2)  # Two
     three = dice_sum - (dice_sum - 3)  # Three
     four = dice_sum - (dice_sum - 4)  # Four
     five = dice_sum - (dice_sum - 5)  # Five
 
+    # If the sum is greater than 6 because 6 is the first
+    # number that can be split into 3 different numbers,
+    # the program will "try and error" several combinations.
     if dice_sum >= 6:
         try:
             closing_three_tiles(one, two, dice_sum)
@@ -175,7 +185,7 @@ def computer_tiles_ii(dice_sum):
     Close the two appropriate tiles if they are open.
     """
     # Defining the variables that will be the parameters
-    # for the closing tile functions
+    # for the closing tile functions.
     one = dice_sum - (dice_sum - 1)  # One
     two = dice_sum - (dice_sum - 2)  # Two
     three = dice_sum - (dice_sum - 3)  # Three
@@ -188,6 +198,9 @@ def computer_tiles_ii(dice_sum):
     four_less = dice_sum - 4  # Four less than dice_sum
     five_less = dice_sum - 5  # Five less than dice_sum
 
+    # This is started after all three tiles combinations are exhausted.
+    # Now the program will "try and error" several combinations
+    # for closing two tiles at once.
     try:
         closing_two_tiles(one, one_less)
     except ValueError:
@@ -211,10 +224,12 @@ def computer_tiles_i(dice_sum):
     Close the one appropriate tiles if it is open.
     """
     value_dice = "So Python can close... "
-
+    # Once all combinations for closing three and two tile are exhausted,
+    # The program will the try to close one tile.
     try:
         closing_one_tile(dice_sum)
         print(value_dice + f" {dice_sum}.")
+    # However if that tile is also no longer open, no tiles will be closed this round.
     except ValueError:
         print(value_dice)
         print("Nothing! No tiles to close, ending the Pythons turn.")
@@ -222,16 +237,17 @@ def computer_tiles_i(dice_sum):
 
 def player_input(dice_sum):
     """
-    Here we ask the player how many tiles
-    should be closed in this round.
-    Should an invalid entry be made,
-    then the player will be asked again.
+    Here we ask the player how many tiles should be closed in this round.
+    Should an invalid entry be made, then the player will be asked again.
     """
+    # Welcome message to the player input function of the game.
     print("How many tiles do you want to close in this round?\n")
     value_player = input("Please enter one, two, three or none to continue: ")
 
+    # Validating the player's input, as only one of 4 choices can be made.
+    # A quit option to end the game here could be added as well.
     if value_player == "none":
-        print("None! No tiles to close, ending the your turn.")
+        print("None! No tiles to close, ending your turn.")
     elif value_player == "one":
         player_input_one(dice_sum)
     elif value_player == "two":
@@ -252,11 +268,15 @@ def player_input_one(dice_sum):
     An invalid entry will repeat the previous input request.
     If all is well, the tile will be closed.
     """
+    # Welcome Message (with input request) for closing one tile.
     one_tile_choosen = input("Please enter the tile to close:\n")
     tile_set_one = int(one_tile_choosen)
 
+    # Validating the input:
     try:
+        # Validating if numbers (int) have been entered
         tile = [int(tile_set_one)]
+        # Validating if exsactly one number was entered
         if len(tile) != 1:
             player_input(dice_sum)
             raise ValueError(
@@ -266,8 +286,11 @@ def player_input_one(dice_sum):
         print(f"Invalid data: {e}, please try again.\n")
         player_input(dice_sum)
 
+    # Validating if the number chosen is equal to the added value of two dice.
     if tile_set_one == dice_sum:
+        # Validating if the number chosen is still in the array.
         if tile_set_one in PLAYER_ARRAY:
+            # Now the value will be removed from the array.
             PLAYER_ARRAY.remove(tile_set_one)
             print(f"Closing tile {tile_set_one}.")
         else:
@@ -288,12 +311,16 @@ def player_input_two(dice_sum):
     An invalid entry will repeat the previous input request.
     If all is well, the tile will be closed.
     """
+    # Welcome Message (with input request) for closing two tiles.
     print("Please enter the two tile to close.")
     two_tile_choosen = input("For example: 7, 1\n")
     tile_set_two = two_tile_choosen.split(",")
 
+    # Validating the input:
     try:
+        # Validating if numbers (int) have been entered.
         [int(tile) for tile in tile_set_two]
+        # Validating if exsactly two numbers were entered.
         if len(tile_set_two) != 2:
             player_input(dice_sum)
             raise ValueError(
@@ -303,17 +330,21 @@ def player_input_two(dice_sum):
         print(f"Invalid data: {e}, please try again.\n")
         player_input(dice_sum)
 
+    # Validating if the numbers are different, since you can't use the same number twice.
     tile_list = [int(tile) for tile in tile_set_two]
 
     if tile_list[0] == tile_list[1]:
         print("Invalid numbers, please choose different numbers.")
         player_input_two(dice_sum)
 
+    # Validating if the numbers chosen add up to have equal value as the added value of the dice.
     if sum(tile_list) == dice_sum:
         i = tile_list[0]
         j = tile_list[1]
+        # Validating if the numbers chosen are still in the array.
         if i in PLAYER_ARRAY:
             if j in PLAYER_ARRAY:
+                # Now the two numbers will be removed from the array.
                 PLAYER_ARRAY.remove(i)
                 PLAYER_ARRAY.remove(j)
                 print(f"Closing tiles {i} and {j}.")
@@ -339,12 +370,16 @@ def player_input_three(dice_sum):
     An invalid entry will repeat the previous input request.
     If all is well, the tile will be closed.
     """
+    # Welcome Message (with input request) for closing three tiles.
     tile_closed = "This tile was already closed and you must close all tiles."
     three_tile_choosen = input("Please enter the three tile to close:\n")
     tile_set_three = three_tile_choosen.split(",")
 
+    # Validating the input:
     try:
+        # Validating if numbers (int) have been entered.
         [int(tile) for tile in tile_set_three]
+        # Validating if exsactly three numbers were entered.
         if len(tile_set_three) != 3:
             player_input(dice_sum)
             raise ValueError(
@@ -354,6 +389,7 @@ def player_input_three(dice_sum):
         print(f"Invalid data: {e}, please try again.\n")
         player_input(dice_sum)
 
+    # Validating if the numbers are different, since you can't use the same number twice.
     tile_list = [int(tile) for tile in tile_set_three]
 
     if tile_list[0] == tile_list[1]:
@@ -366,13 +402,16 @@ def player_input_three(dice_sum):
         print("Invalid numbers, please choose different numbers.")
         player_input_three(dice_sum)
 
+    # Validating if the numbers chosen add up to have equal value as the added value of the dice.
     if sum(tile_list) == dice_sum:
         i = tile_list[0]
         j = tile_list[1]
         k = tile_list[2]
+        # Validating if the numbers chosen are still in the array.
         if i in PLAYER_ARRAY:
             if j in PLAYER_ARRAY:
                 if k in PLAYER_ARRAY:
+                    # Now the three numbers will be removed from the array.
                     PLAYER_ARRAY.remove(i)
                     PLAYER_ARRAY.remove(j)
                     PLAYER_ARRAY.remove(k)
@@ -397,18 +436,24 @@ def player_input_three(dice_sum):
 
 def start(name):
     """
-    The start-up function, where a player
-    can read the rules or start up the game.
+    The start-up function,
+    where a player can read the rules or start up the game.
     """
+    # Welcome Message of the "Start Game or Rules" function.
+    print("Would you like to start a new game or read the game rules?")
+    # Asking for the input of the player's choice.
+    # Only two valid choices so far, a "quit" option could be added later
     start_or_rules = input("""Please enter:
     - 'game' to start a game
     - 'rules' to read the rules
     """)
+    # Validating the players choice.
     if start_or_rules == 'rules':
         game_rules()
         start(name)
     elif start_or_rules == 'game':
         main_game(name)
+    # If an invalid input was made, the function starts over again.
     else:
         print("Invalid entry, please enter:")
         print("'game' to start a game")
@@ -423,31 +468,36 @@ def score(name):
     player_score = 0
     computer_score = 0
 
+    # Calculating the score, which could also be just:
+    # player_score = sum(PLAYER_ARRAY)
+    # However, shoud this game be extended and "new match" option impemented,
+    # this function will not require any modification.
     player_score = player_score + sum(PLAYER_ARRAY)
     computer_score = computer_score + sum(COMPUTER_ARRAY)
 
     print(f"You got: {player_score} points!")
     print(f"Python got: {computer_score} points!\n")
 
+    # Comparing the scores to determine the match-winner.
+    # In "Empty the Array" the player with the least points wins.
     if player_score > computer_score:
-        print("Python has less points.")
+        print("Python has fewer points.")
         print("Python wins!\n")
     elif player_score == computer_score:
         print("We have a draw!\n")
         print(f"Python and {name} have the same amount of points.")
     else:
-        print(f"{name} has less points.")
+        print(f"{name} has fewer points.")
         print(f"{name} wins!\n")
 
 
 def main_game(name):
     """
     The main function of the game:
-    It defines a game round.
-    A round has:
-    1. The players trun:
+    It defines a game round:
+    1. The players turn:
     -> rolling the dice
-    -> imput of the tiles to close
+    -> input of the tiles to close
     -> closing the tiles
     2. The computers turn:
     -> rolling the dice
@@ -461,41 +511,58 @@ def main_game(name):
     i = 1
     empty = []
 
-    while i <= 9:
+    while i <= 9:  # Run this code nine times.
         print(" ")
-        print(f"***** Round {i} ******\n")
+        print(f"***** Round {i} ******\n")  # To show that a new round started.
 
+        # Rolling the dices.
         print("You are rolling your dice...\n")
         dice_one = dice_roll()
         dice_two = dice_roll()
         print(f"{name} rolled {dice_one} and a {dice_two}")
 
+        # Adding the value of the dices together.all(iterable)
         dice_sum = dice_one + dice_two
         print(f"The sum of the dices is: {dice_sum}\n")
+        # Reminding the player which tiles are open.
         print(f"Your tiles are: {PLAYER_ARRAY}\n")
+
+        # Asking for player input.
         player_input(dice_sum)
         print(f"Your left-over tiles are: {PLAYER_ARRAY}\n")
         input("Please press any key to continue.\n")
 
+        # It is the computers turn.
+        # Rolling the dices for the computer.
         print("Python is rolling the dice...\n")
         dice_one = dice_roll()
         dice_two = dice_roll()
         print(f"Python rolled {dice_one} and a {dice_two}")
 
+        # Adding the value of the dices together.
         dice_sum = dice_one + dice_two
         print(f"The sum of the dices is: {dice_sum}\n")
-        print(f"Pythons tiles are: {PLAYER_ARRAY}\n")
+        print(f"Pythons tiles are: {COMPUTER_ARRAY}\n")
+
+        # Starting "try and error" - functions
+        # to see what the computer can close.
+        # It's rather "agressive" and will start
+        # to close as much tiles first as possible,
+        # which is not always the best staregy.
         computer_tiles_iii(dice_sum)
         print(f"Pythons left-over tiles are: {COMPUTER_ARRAY}\n")
         input("Please press any key to continue.\n")
 
         if PLAYER_ARRAY == empty or COMPUTER_ARRAY == empty:
-            break
+            break  # When one of the arrays is empty the codes stops running.
         i += 1
 
+    # Showing that the code stopped running.
     print("Game completed.\n")
+    # Calculating the score.
     score(name)
 
+    # Goodbye message at the end of the game.
     print("***** Thank you for playing 'Empty the Array' *****")
 
 
@@ -503,12 +570,15 @@ def intro():
     """
     The intro function to the game, where the player can enter the name.
     """
+    # Welcome Message.
     print("Welcome to the 'Empty the Array'- Game")
 
+    # Input request for the name.
+    # No validations are made here, as the player is free to choose
+    # whatever name is to be used in this game.
     name = input("Please enter your name: ")
-    print(f"Hello {name}.")
-    print("Would you like to start a new game or read the game rules?")
 
+    print(f"\nHello {name}.")
     start(name)
 
 
