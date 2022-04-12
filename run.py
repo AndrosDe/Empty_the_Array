@@ -30,7 +30,7 @@ At the start of the game, you will start with a full array from 1 to 9.
 During the game, each player plays in turn for nine rounds
 or until an array is empty.
 
-The remaining value entries in the array, are then added together.
+The remaining value entries in the array will be added together.
 The player with the lowest sum will win the match.
 
 '''
@@ -57,7 +57,6 @@ If the dice yield no number(s) to close (all) tile(s),
 then the player must "pass".
 
 '''
-
     rule_part_four = '''
 Calculating Score:
 At the end of the 9th round or when one of the players has an empty array,
@@ -67,7 +66,7 @@ For example, if the numbers 2, 3, and 5 are still open the player's score is
 
 '''
     # To make the actual code more readable,
-    # these variables were used to divorce the text for the program structure.
+    # these variables are used to divorce the text for the program structure.
     # Input requests to prevent the whole text from being shown at once.
     print(rule_part_one)
     input("Please press 'Enter' to continue.\n")
@@ -270,7 +269,7 @@ def player_input(dice_sum):
 
 def val_input_as_pass(a):
     """
-    Validating if the player wants to pass this round.
+    Validate if the player wants to pass this round.
     """
     if a != "none":
         if a != 'None':
@@ -282,7 +281,7 @@ def val_input_as_pass(a):
 
 def val_input_as_num(a):
     """
-    Validating if numbers (int) have been entered.
+    Validate if numbers (int) have been entered.
     """
     try:
         [int(i) for i in a]
@@ -294,7 +293,7 @@ def val_input_as_num(a):
 
 def val_input_eqaul_dice(a, b):
     """
-    Validating if value of the dices and the numbers chosen are equal.
+    Validating if the value of the dice and the numbers chosen are equal.
     """
     if sum(a) != b:
         print("The value of the tile(s) must match the value of both dices.")
@@ -305,7 +304,7 @@ def val_input_eqaul_dice(a, b):
 
 def val_input_lenght(a):
     """
-    Validating if one, two or three numbers have been entered.
+    Validating if one, two, or three numbers have been entered.
     """
     if len(a) > 3:
         print("Only one, two or three tiles can be closed at a time.")
@@ -391,7 +390,7 @@ def val_input_tile_available(a):
 
 def val_input_one_tile_available(a):
     """
-    Validating if the one number chosen are still in the array.
+    Validate if the one number chosen is still in the array.
     """
     if a[0] in PLAYER_ARRAY:
         return True
@@ -403,7 +402,7 @@ def val_input_one_tile_available(a):
 
 def val_input_two_tile_available(a):
     """
-    Validating if the two numbers chosen are still in the array.
+    Validate if the two numbers chosen are still in the array.
     """
     if a[0] in PLAYER_ARRAY:
         if a[1] in PLAYER_ARRAY:
@@ -420,7 +419,7 @@ def val_input_two_tile_available(a):
 
 def val_input_three_tile_available(a):
     """
-    Validating if the three numbers chosen are still in the array.
+    Validate if the three numbers chosen are still in the array.
     """
     if a[0] in PLAYER_ARRAY:
         if a[1] in PLAYER_ARRAY:
@@ -442,7 +441,7 @@ def val_input_three_tile_available(a):
 
 def player_closing_tiles(a):
     """
-    Reviewing the result of the input for length.
+    Review the result of the input for length.
     """
     if len(a) == 1:
         b = player_colsing_one_tile(a)
@@ -464,13 +463,13 @@ def player_closing_tiles(a):
             return True
     else:
         print("Odd, this should have been validated to only have 3 numbers.")
-        print("Please contact the developer.")
+        print("Please, contact the developer.")
         return False
 
 
 def player_colsing_one_tile(a):
     """
-    Removing the number from the array.
+    Remove the number from the array.
     """
     PLAYER_ARRAY.remove(a[0])
     print(f"Closing tile {a[0]}.")
@@ -479,7 +478,7 @@ def player_colsing_one_tile(a):
 
 def player_colsing_two_tiles(a):
     """
-    Removing the two numbers from the array.
+    Remove the two numbers from the array.
     """
     PLAYER_ARRAY.remove(a[0])
     PLAYER_ARRAY.remove(a[1])
@@ -489,7 +488,7 @@ def player_colsing_two_tiles(a):
 
 def player_colsing_three_tiles(a):
     """
-    Removing the three numbers from the array.
+    Remove the three numbers from the array.
     """
     PLAYER_ARRAY.remove(a[0])
     PLAYER_ARRAY.remove(a[1])
@@ -639,7 +638,7 @@ def intro():
 
     # Input request for the name.
     # No validations are made here, as the player is free to choose
-    # whatever name is to be used in this game.
+    # whatever name they want in this game.
     name = input("Please enter your name: ")
 
     print(f"\nHello {name}.")
@@ -648,7 +647,7 @@ def intro():
 
 # Here we call up the game, with the intro function,
 # the main function will be called up a bit later,
-# This way the player name only needs to be entered once
+# This way the player's name only needs to be entered once
 # and can start the match after reading the rules,
 # without starting the whole program again.
 
