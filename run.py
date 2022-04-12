@@ -244,6 +244,8 @@ def player_input(dice_sum):
         print(f"The sum of the dices is: {dice_sum}\n")
         print(f"Your tiles are: {PLAYER_ARRAY}\n")
         print("Which tile(s) do you want to close in this round?\n")
+        print("If you want to pass this round, please enter:\n")
+        print("pass, none or just press 'Enter'.")
         print("Please enter your choice like this:")
 
         tile_input = input("'8' or '7, 1' or '5, 2, 1' or 'none'\n")
