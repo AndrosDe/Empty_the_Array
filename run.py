@@ -138,7 +138,7 @@ def closing_three_tiles(i, j, dice_sum):
         raise ValueError
 
 
-def computer_tiles_iii(dice_sum):
+def ai_valadation_three_tiles_combi(dice_sum):
     """
     Close the three appropriate tiles if they are open.
     """
@@ -175,12 +175,12 @@ def computer_tiles_iii(dice_sum):
                                 try:
                                     closing_three_tiles(three, four, dice_sum)
                                 except ValueError:
-                                    computer_tiles_ii(dice_sum)
+                                    ai_valadation_two_tiles_combi(dice_sum)
     else:
-        computer_tiles_ii(dice_sum)
+        ai_valadation_two_tiles_combi(dice_sum)
 
 
-def computer_tiles_ii(dice_sum):
+def ai_valadation_two_tiles_combi(dice_sum):
     """
     Close the two appropriate tiles if they are open.
     """
@@ -216,10 +216,10 @@ def computer_tiles_ii(dice_sum):
                     try:
                         closing_two_tiles(five, five_less)
                     except ValueError:
-                        computer_tiles_i(dice_sum)
+                        ai_valadation_one_tile_combi(dice_sum)
 
 
-def computer_tiles_i(dice_sum):
+def ai_valadation_one_tile_combi(dice_sum):
     """
     Close the one appropriate tiles if it is open.
     """
@@ -585,7 +585,7 @@ def main_game(name):
         # It's rather "agressive" and will start
         # to close as much tiles first as possible,
         # which is not always the best staregy.
-        computer_tiles_iii(dice_sum)
+        ai_valadation_three_tiles_combi(dice_sum)
         print(f"Pythons left-over tiles are: {COMPUTER_ARRAY}\n")
         input("Please press any key to continue.\n")
 
