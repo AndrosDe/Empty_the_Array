@@ -257,7 +257,7 @@ def player_input(dice_sum):
         if val_input_as_pass(tile_input):
             if val_input_as_num(tile_array_str):
                 tile_array_int = [int(a) for a in tile_array_str]
-                if val_input_eqaul_dice(tile_array_int, dice_sum):
+                if val_input_equal_dice(tile_array_int, dice_sum):
                     if val_input_lenght(tile_array_int):
                         if val_input_same_num(tile_array_int):
                             if val_input_tile_available(tile_array_int):
@@ -293,7 +293,7 @@ def val_input_as_num(a):
     return True
 
 
-def val_input_eqaul_dice(a, b):
+def val_input_equal_dice(a, b):
     """
     Validating if the value of the dice and the numbers chosen are equal.
     """
