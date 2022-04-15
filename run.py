@@ -629,7 +629,7 @@ def main_game(name):
     score(name)
 
     # Goodbye message at the end of the game.
-    print("\n***** Thank you for playing 'Empty the Array' *****\n")
+    print("\n ***** Thank you for playing 'Empty the Array' *****\n")
     print("  ___   ___   ___   ___   ___   ___   ___   ___   ___ ")
     print(" |___| |___| |___| |___| |___| |___| |___| |___| |___|\n\n")
     print("               .-------.          ______ ")
