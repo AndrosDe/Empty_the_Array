@@ -152,7 +152,7 @@ def ai_valadation_three_tiles_combi(dice_sum):
     # If the sum is greater than 6 because 6 is the first
     # number that can be split into 3 different numbers,
     # the program will "try and error" several combinations.
-    if dice_sum >= 6:
+    if dice_sum >= 8:
         try:
             ai_close_three_tiles(one, two, dice_sum)
         except ValueError:
@@ -297,8 +297,9 @@ def val_input_equal_dice(a, b):
     """
     Validating if the value of the dice and the numbers chosen are equal.
     """
+    x = "The value of the tile(s) must match the combined value of both dices."
     if sum(a) != b:
-        print("The value of the tile(s) must match the value of both dices.")
+        print(x)
         return False
     else:
         return True
@@ -629,6 +630,15 @@ def main_game(name):
 
     # Goodbye message at the end of the game.
     print("\n***** Thank you for playing 'Empty the Array' *****\n")
+    print("  ___   ___   ___   ___   ___   ___   ___   ___   ___ ")
+    print(" |___| |___| |___| |___| |___| |___| |___| |___| |___|\n\n")
+    print("               .-------.          ______ ")
+    print("              /   o   /|         /\     \ ")
+    print("             /_______/o|        /o \  o  \ ")
+    print("             | o     | |       /   o\_____\ ")
+    print("             |   o   |o/       \o   /o    / ")
+    print("             |     o |/         \ o/  o  / ")
+    print("             '-------'           \/____o/ \n\n")
 
 
 def intro():
@@ -636,8 +646,18 @@ def intro():
     The intro function to the game, where the player can enter the name.
     """
     # Welcome Message.
-    print("Welcome to the 'Empty the Array'- Game")
-
+    print("******* Welcome to the 'Empty the Array'- Game *******\n")
+    print("  ___   ___   ___   ___   ___   ___   ___   ___   ___ ")
+    print(" |   | |   | |   | |   | |   | |   | |   | |   | |   |")
+    print(" | 1 | | 2 | | 3 | | 4 | | 5 | | 6 | | 7 | | 8 | | 9 |")
+    print(" |___| |___| |___| |___| |___| |___| |___| |___| |___|\n\n")
+    print("               .-------.          ______ ")
+    print("              /   o   /|         /\     \ ")
+    print("             /_______/o|        /o \  o  \ ")
+    print("             | o     | |       /   o\_____\ ")
+    print("             |   o   |o/       \o   /o    / ")
+    print("             |     o |/         \ o/  o  / ")
+    print("             '-------'           \/____o/ \n\n")
     # Input request for the name.
     # No validations are made here, as the player is free to choose
     # whatever name they want in this game.

@@ -1,7 +1,7 @@
 <h1 align="center"> Empty the Array </h1>
 <h2> Welcome </h2>
 
-<h3> 
+<h4> 
   This is the Python-based command-line game: "Empty the Array".<br>This game is a variant of Shut the box (also called canoga, batten down the hatches or trick-track) dice game.
 
   [More information on the dice game here](https://en.wikipedia.org/wiki/Shut_the_box).
@@ -10,7 +10,7 @@
   
   Only up to 3 numbers can be removed in one round and all number can only be used once.
   If you use 2 or 3 numbers, with one of the numbers already being removed from the arry, the input is invalid as only number can beremoved from the array, that are still in it.
-<h3>
+<h4>
 
 <h2 align="center"><img src="assets/images/screenshots/readme_title_pic.jpg" height="500" width="900"></h2>
 
@@ -68,62 +68,84 @@
 ## Features
 - ### Existing Features
   - #### Welcome Message
-
-    <h3><img src="assets/images/screenshots/screenshot_welcome.png" height="40" width="500"></h3>
+    A frindly message and some ASCII art to state the name of the game and give a preview that it must be a game about tiles numbered from 1 to 9 and dice rolls.
+    <h3><img src="assets/images/screenshots/screenshot_welcome.png" height="300" width="500"></h3>
 
   - #### Enter Name
-
+    The input request for the players name. This input value will be later on used in the program to highlight user actions or output related to the user.<br>This input request has no validation, as the user is free to choose whatever name the user wants to use.
     <h3><img src="assets/images/screenshots/screenshot_name.png" height="40" width="500"></h3>
 
   - #### Start-Up
-
+    The start-up has an input request where the player can select to read about the game ruels and understand how to play the game or to start playing the game right away but typing "game" or "rules" and confirming with 'Enter'.
     <h3><img src="assets/images/screenshots/screenshot_startup.png" height="150" width="500"></h3>
     
-  - #### Start-Up
-
+  - #### Start-Up-Validation
+    In order to make sure that correct input was made, the input-value will be validated.<br>Only  "game" or "rules" are valid inputs, any other input will promt an error message, requesting the correct input-value.
     <h3><img src="assets/images/screenshots/screenshot_startup_val.png" height="150" width="500"></h3>
     
   - #### Game Rules
-
+    New users, that are unfamilier with the game, can read up how this game is played and how the winner is calculated.<br>
+    Unlike most games, the player with the least amount of points wins this game.<br>
+    Additionally only the added sum of the dices are important and any combination of up to three diffrent numbers,<br>that would reproduce this sum, are valid if all of these number can be removed from the arry.<br>
+    For example, if the total number is "8" the player may choose any of the following sets of numbers:
+    - 8
+    - 7, 1
+    - 6, 2
+    - 5, 3
+    - 5, 2, 1
+    - 4, 3, 1
+    
+    <br>
     <h3><img src="assets/images/screenshots/screenshot_startup_rules.png" height="150" width="500"></h3>
 
   - #### Press 'Enter' to continue
-
+    The input request "Press 'Enter' to continue" was implemented throughout the program in order to prevent to much text being displayed at one.<br>This way an informational overload can be avoided at the cost of the player needing to press 'Enter' every now and then.<br>This input request in not validated and will accept other input, but ignores everything save for the 'Enter' input.
     <h3><img src="assets/images/screenshots/screenshot_wall_of_text_prevention.png" height="30" width="300"></h3>
 
   - #### Dice
-
+    The dice roll is simiulated with the help of the random module, randomly creating a number between 1 and 6.<br>This is called up twice and than added to gether to provide the number for the respective player.
     <h3><img src="assets/images/screenshots/screenshot_game_player.png" height="250" width="500"></h3>
 
   - #### Input validation
+    In order to make sure that the user is providing valid input, several inputvalidations have to be made and all must be passed in order to progress in the game:
+    1. **Does the user want to pass this round?**<br>If the user dicided to risk it and wait for better numbers, passing a round is an option.<br>In this case an input of 'none' is required and the user will have the next player roll the dice.<br>Additonally to 'none':<br> 'None', 'pass', 'Pass' and pressing Enter with entering no value will be valid entries to pass the turn.<br>All other input will be validated in the next step.
+        <h3><img src="assets/images/screenshots/screenshot_game_val_0.png" height="110" width="450"></h3>
 
-    <h3><img src="assets/images/screenshots/screenshot_game_val_0.png" height="110" width="450"></h3>
+    1. **Is the input a or multiple number(s)?**<br>As the first validation already filtered out all valid inputs, that are not numbers, only numbers are allowed from this point onward.<br>If the input is neither a number nor one of the approved non-number values, the player will get an error message explaining that number are needed and is requested to make a different input.
+        <h3><img src="assets/images/screenshots/screenshot_game_val_1.png" height="90" width="750"></h3>
+    
+    1. **Does the number(s) add up to be equal to the sum of both dices?**<br>In order to make sure that the correct numbers are provided, the first test is to check if it matches the sum of both dices.<br>If there is a difference, an error message will appeare stating that the numbers provided do not match the combined value of dices.<br>
+    The user is than requested to make a different input.
+        <h3><img src="assets/images/screenshots/screenshot_game_val_2.png" height="110" width="600"></h3>
 
-    <h3><img src="assets/images/screenshots/screenshot_game_val_1.png" height="90" width="750"></h3>
+    1. **Are the numbers different?**<br>As stated in the rules, if more than one number is used, they must be diffrerent.<br>While five + five = ten, five can only be remove from the array once.<br>Therefor this would be an invalid input.<br>For example one + nine, would be fine at this stage, as they are different numbers.<br>If one of the number in the input is the same as another, an approproate error message will be displayed and a different input is requested.
+        <h3><img src="assets/images/screenshots/screenshot_game_val_3.png" height="90" width="450"></h3>
 
-    <h3><img src="assets/images/screenshots/screenshot_game_val_2.png" height="110" width="600"></h3>
+    1. **How many number are provided?**<br>As by the rules of the game only up to 3 numbers can be used per turn, it is now checked how many numbers were provided by the user.<br>If the more than 3 numbers are verified an error message state how many numbers were proved and request an new inpu of only upto 3 numbers.
+        <h3><img src="assets/images/screenshots/screenshot_game_val_4.png" height="100" width="500"></h3>
 
-    <h3><img src="assets/images/screenshots/screenshot_game_val_3.png" height="90" width="450"></h3>
+    1. **Is the number still in the array?**<br>Since only numbers that are still in the array can be closed, the last validation is, after going through all other steps an making sure that normally this input should be valid and remove the number from the array, to check if the number is still in the array.<br>This is especially important by multiple numbers, since all numbers have to be able to be used.<br>If the number 1,2,5 are entered however the players array down to [1, 3, 4, 5, 7], only 1 and 5 could be used.<br>Hence a new input request would made after displaying which number was invalid.
+        <h3><img src="assets/images/screenshots/screenshot_game_val_5.png" height="120" width="400"></h3>
 
-    <h3><img src="assets/images/screenshots/screenshot_game_val_4.png" height="100" width="500"></h3>
-
-    <h3><img src="assets/images/screenshots/screenshot_game_val_5.png" height="120" width="400"></h3>
+    Indeed only after passing all validations succesfully, will the programm continue, otherwise is will request a new valid entry from the player and will go through all steps again.
 
   - #### Display on Progress and vital information
-
+    In order to make sure the player gets the information that the input was correctly processed, not only will a confirmation on the numbers removed appear as an out put on the screen, also an overview of the current state of his tiles will be shown.
     <h3><img src="assets/images/screenshots/screenshot_game_player_input.png" height="120" width="500"></h3>
 
   - #### Computer opponent
-
+    This game comes with an automate oppenent that will be subject to the same random dice roll function as the player and will select numbers to close according to the same rule set.<br>The only thing 'Python' will not do is to pass a trun, if 'Python' could remove a number.<br>Stratgie is not 'Python' strongest ability in this instance.
     <h3><img src="assets/images/screenshots/screenshot_game_computer.png" height="200" width="500"></h3>
 
   - #### Score claculation
-
+    After the 9th round or if one of the players managed to clead out the array, all values in the array will be added together.<br>
+    The player scoring the least amount of points and therefor the one that was able to not only remove the most numbers, but also most of the biggest numbers.<br>
+    Removing 1,3,5 is great, however removing 9 migth be better, as you might have the chance to close more tiles if you still have some rounds left to play.
     <h3><img src="assets/images/screenshots/screenshot_game_score.png" height="160" width="400"></h3>
 
   - #### Game End Message
-
-    <h3><img src="assets/images/screenshots/screenshot_game_end.png" height="50" width="500"></h3>
+    The game concludes with a 'Thank you' mesage to the user for playing the game, signaling that the game is completed.
+    <h3><img src="assets/images/screenshots/screenshot_game_end.png" height="300" width="500"></h3>
 
 - ### Features Left to Implement
   - #### Start a new match
@@ -243,5 +265,6 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
 
 ### Acknowledgements
 -  My Mentor Mr. Dario Carrasquel for continuous helpful feedback.
--  The [Love Sandwiches](https://github.com/AndrosDe/Love-Sandwiches) for inspiring me and allowing me to look code up
-- dnlbowers for the "Deployment to Heroku" README - Part of [battleships](https://github.com/dnlbowers/battleships/blob/main/README.md).
+-  The [Love Sandwiches](https://github.com/AndrosDe/Love-Sandwiches) for inspiring me and allowing me to look code up.
+-  dnlbowers for the "Deployment to Heroku" README - Part of [battleships](https://github.com/dnlbowers/battleships/blob/main/README.md).
+- Joan G. Stark fot thr ASCII [Dice Art](https://www.asciiart.eu/miscellaneous/dice).
