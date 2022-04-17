@@ -222,7 +222,7 @@ Some of these functions are for validating, while the others to the intended cha
 
 ## Deployment
 
-### Heroku
+### Heroku (before 16.04.2022)
 
 The project was deployed to [Heroku](https://www.heroku.com) using the below procedure:
   
@@ -243,8 +243,37 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
 1. **Search** for the **repository name** and **click** the **connect** button next to the intended repository.
 1. From the bottom of the deploy page **select your preferred deployment type** by following one of the below steps:  
    * Clicking either "Enable Automatic Deploys" for automatic deployment when you push updates to Github.  
-   * Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment. 
+   * Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment.
 
+### Heroku (after 16.04.2022)
+1. **Log in to Heroku** or create an account if required.
+2. Open a new tab and **Log in to GitHub**.
+3. Locate the **[GitHub Repository](https://github.com/AndrosDe/Empty_the_Array)**
+4. At the top of the Repository (not top of page), locate the green **"Gitpod"** button.
+5. Open **Gitpod** in a new tab and enter the appropriate Gitpod-Workspace.
+6. In Gitpod open a new **Terminal**.
+7. Run the **Command**:
+  ```
+   heroku login -i 
+  ```
+8. Enter the Heroku login information when prompted.
+9. After being logged in run the next **Command**:
+  ```
+   heroku create empty-the-array
+  ```
+10. Change back to the tap with **Heroku** and refresh.
+11. Verify that the new app is in your **Heroku** account.
+12. Open the app in **Heroku** and navigate to the **settings tab**.
+13. Scroll down to the **"Config Vars" section** and **Click** the button labeled **"Reveal Config Vars"**.
+14. **Enter** the **"key" as port**, the **"value" as 8000** and **click** the **"add"** button.
+15. Scroll down to the **buildpacks section of the settings page** and click the button labeled **" add buildpack," select "Python," and click "Save Changes"**.
+16. **Repeat step 15 but** this time **add "node.js" instead of python**. 
+   * ***IMPORTANT*** The buildpacks must be in the correct order. If node.js is listed first under this section, you can click on python and drag it upwards to change it to the first buildpack in the list.
+17. Go back to the **Gitpod** tab.
+18. Now to deploy the new version of the app, enter the following **Command** into the **Terminal**:
+  ```
+   git push heroku main
+  ```
 <hr>
 
 ## Credits
