@@ -218,7 +218,6 @@ Some of these functions are for validating, while the others to the intended cha
 
   <br>These changes did help solve the previous problem and also improved the player input request, as the player is no longer required to state separately how many values of the array are to be removed and then to specify the values.<br>Instead the player is now asked to input the values right away and will start validating the input.
 
-
 <hr>
 
 ## Deployment
