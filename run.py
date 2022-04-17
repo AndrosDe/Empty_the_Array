@@ -600,9 +600,9 @@ def main_game(name):
         # While one can mahe one string got over multiple line with '''
         # I prevere it with multple print statements in this case
         # as it makes the program easer to read.
-        print("            __ ")
-        print("      __   /\_\")
-        print("     /_/\  \/_/")
+        print("            __  ")
+        print("      __   /\_\ ")
+        print("     /_/\  \/_/ ")
         print("     \_\/ \n")
         dice_one = dice_roll()
         dice_two = dice_roll()
