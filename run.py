@@ -261,6 +261,8 @@ def player_input(dice_sum):
                     if val_input_lenght(tile_array_int):
                         if val_input_same_num(tile_array_int):
                             if val_input_tile_available(tile_array_int):
+                                # After all validation is completed,
+                                # the number(s) are removed from the array:
                                 player_closing_tiles(tile_array_int)
                                 break
 
@@ -446,6 +448,9 @@ def player_closing_tiles(a):
     """
     Review the result of the input for length.
     """
+    # Due to bugs in the pervious version, this removal function is sperated
+    # from the validation function, even though they are quite similar
+    # and might be consolidated in some later version.
     if len(a) == 1:
         b = player_colsing_one_tile(a)
         if b is False:
@@ -474,6 +479,9 @@ def player_colsing_one_tile(a):
     """
     Remove the number from the array.
     """
+    # remove() will remove a specific value from an array.
+    # pop() will pull out an value by it's index.
+    # Therefore remove is the better option in this case.
     PLAYER_ARRAY.remove(a[0])
     print(f"Closing tile {a[0]}.")
     return True
@@ -483,6 +491,9 @@ def player_colsing_two_tiles(a):
     """
     Remove the two numbers from the array.
     """
+    # remove() will remove a specific value from an array.
+    # pop() will pull out an value by it's index.
+    # Therefore remove is the better option in this case.
     PLAYER_ARRAY.remove(a[0])
     PLAYER_ARRAY.remove(a[1])
     print(f"Closing tiles {a[0]} and {a[1]}.")
@@ -493,6 +504,9 @@ def player_colsing_three_tiles(a):
     """
     Remove the three numbers from the array.
     """
+    # remove() will remove a specific value from an array.
+    # pop() will pull out an value by it's index.
+    # Therefore remove is the better option in this case.
     PLAYER_ARRAY.remove(a[0])
     PLAYER_ARRAY.remove(a[1])
     PLAYER_ARRAY.remove(a[2])
@@ -582,7 +596,14 @@ def main_game(name):
         print(f"***** Round {i} ******\n")  # To show that a new round started.
 
         # Rolling the dices.
-        print("You are rolling your dice...\n")
+        print("You are rolling your dice...")
+        # While one can mahe one string got over multiple line with '''
+        # I prevere it with multple print statements in this case
+        # as it makes the program easer to read.
+        print("            __ ")
+        print("      __   /\_\")
+        print("     /_/\  \/_/")
+        print("     \_\/ \n")
         dice_one = dice_roll()
         dice_two = dice_roll()
         print(f"{name} rolled {dice_one} and a {dice_two}")
@@ -601,6 +622,10 @@ def main_game(name):
         print(" ")
         print("***** Python's turn *****\n")
         print("Python is rolling the dice...\n")
+        print("      __        ")
+        print("     /\_\   __  ")
+        print("     \/_/  /_/\ ")
+        print("           \_\/ \n")
         dice_one = dice_roll()
         dice_two = dice_roll()
         print(f"Python rolled {dice_one} and a {dice_two}")
