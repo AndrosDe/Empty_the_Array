@@ -245,7 +245,7 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
    * Clicking either "Enable Automatic Deploys" for automatic deployment when you push updates to Github.  
    * Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment.
 
-### Heroku (after 16.04.2022)
+### Heroku (after 16.04.2022) - Initial deployment:
 1. **Log in to Heroku** or create an account if required.
 2. Open a new tab and **Log in to GitHub**.
 3. Locate the **[GitHub Repository](https://github.com/AndrosDe/Empty_the_Array)**
@@ -274,6 +274,17 @@ The project was deployed to [Heroku](https://www.heroku.com) using the below pro
   ```
    git push heroku main
   ```
+
+### Heroku (after 16.04.2022) - Subsequent deployment:
+1. **Repeat steps 1 to 9 from the Initial deployment but** this time run the **Command**:
+  ```
+   heroku git:remote -a empty-the-array
+  ```
+2. Then enter the following **Command** into the **Terminal**:
+  ```
+   git push heroku main
+  ```
+
 <hr>
 
 ## Credits
