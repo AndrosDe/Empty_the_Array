@@ -24,47 +24,49 @@ def game_rules():
     """
     # The rules are split into 4 parts to prevent a "wall-of-text"-issue.
     rule_part_one = '''
-How the game is played:
+    How the game is played:
 
-At the start of the game, you will start with a full array from 1 to 9.
-During the game, each player plays in turn for nine rounds
-or until an array is empty.
+    At the start of the game, you will start with a full array from 1 to 9.
+    During the game, each player plays in turn for nine rounds
+    or until an array is empty.
 
-The remaining value entries in the array will be added together.
-The player with the lowest sum will win the match.
+    The remaining value entries in the array will be added together.
+    The player with the lowest sum will win the match.
 
-'''
+    '''
     rule_part_two = '''
-A round will playout like this:
-The player begins their turn by rolling the die or dice.
-After throwing, the player adds up (or subtracts) the dice and then removes one
-of any combination of numbers that sum to the total number of the dices,
-if all of these numbers are still available.
+    A round will playout like this:
+    The player begins their turn by rolling the die or dice.
+    After throwing, the player adds up (or subtracts) the dice and
+    then removes one of any combination of numbers
+    that sum to the total number of the dices,
+    if all of these numbers are still available.
 
-'''
+    '''
     rule_part_three = '''
-For example, if the total number is "8" the player may choose any of the
-following sets of numbers (if all of the numbers are available in the array):
-    - 8
-    - 7, 1
-    - 6, 2
-    - 5, 3
-    - 5, 2, 1
-    - 4, 3, 1
+    For example, if the total number is "8"
+    the player may choose any of the following sets of numbers
+    (if all of the numbers are available in the array):
+        - 8
+        - 7, 1
+        - 6, 2
+        - 5, 3
+        - 5, 2, 1
+        - 4, 3, 1
 
-Then the next player's turn comes and chooses a set of tiles to close.
-If the dice yield no number(s) to close (all) tile(s),
-then the player must "pass".
+    Then the next player's turn comes and chooses a set of tiles to close.
+    If the dice yield no number(s) to close (all) tile(s),
+    then the player must "pass".
 
-'''
+    '''
     rule_part_four = '''
-Calculating Score:
-At the end of the 9th round or when one of the players has an empty array,
-the player scores the sum of the remaining numbers in the array.
-For example, if the numbers 2, 3, and 5 are still open the player's score is
-10 (2 + 3 + 5 = 10).
+    Calculating Score:
+    At the end of the 9th round or when one of the players has an empty array,
+    the player scores the sum of the remaining numbers in the array.
+    For example, if the numbers 2, 3, and 5 are still open
+    the player's score is 10 (2 + 3 + 5 = 10).
 
-'''
+    '''
     # To make the actual code more readable,
     # these variables are used to divorce the text for the program structure.
     # Input requests to prevent the whole text from being shown at once.
@@ -275,7 +277,9 @@ def val_input_as_pass(a):
     """
     Validate if the player wants to pass this round.
     """
-    if a != "none":
+    # This validation only works in this nested way.
+    # Using 'or' to put all in one line, does not work in this program.
+    if a != 'none':
         if a != 'None':
             if a != 'pass':
                 if a != 'Pass':
@@ -664,6 +668,7 @@ def main_game(name):
     print("             |   o   |o/       \o   /o    / ")
     print("             |     o |/         \ o/  o  / ")
     print("             '-------'           \/____o/ \n\n")
+    print("Refresh the website to play again.\n")
 
 
 def intro():
